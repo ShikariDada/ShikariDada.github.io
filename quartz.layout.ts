@@ -53,7 +53,9 @@ export const defaultContentPageLayout: PageLayout = {
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
-    Component.PageTitle(),
+    Component.PageTitle({
+  logo: "static/logo.png",
+}),
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
       components: [
