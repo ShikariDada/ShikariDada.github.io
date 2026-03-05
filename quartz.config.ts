@@ -10,6 +10,7 @@ const config: QuartzConfig = {
   configuration: {
     pageTitle: "Zeroth Layer",
     pageTitleSuffix: "",
+    logo: "static/logo.png",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
