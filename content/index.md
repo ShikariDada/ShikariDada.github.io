@@ -18,5 +18,5 @@ Here are my posts:
 
 
 
-\- \[\[An Idea about birth and probability]]
+\- \[\[an-idea-about-birth-and-probability]]
 
