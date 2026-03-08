@@ -14,16 +14,17 @@ body {
   text-rendering: optimizeLegibility !important;
 }
 
-/* 2. AGGRESSIVE DESKTOP SIZING */
-/* We must target the article tag specifically to override Quartz's desktop defaults */
+/* 2. TRUE DESKTOP SIZING & BREATHING SPACE */
+/* By targeting 'article', we enlarge the reading text without breaking the UI */
+article,
 article p, 
 article ul, 
 article ol, 
 article li, 
 .popover-hint {
-  font-size: 17.85px !important;
-  line-height: 26.78px !important; /* Exactly 1.5x the font size */
-  margin-bottom: 1.5em !important;
+  font-size: 19px !important; /* Bumped up for true native size */
+  line-height: 1.65 !important; /* Generous breathing room between lines */
+  margin-bottom: 1.8em !important; /* Extra space between paragraphs */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,13 +32,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600 !important;
 }
 
-/* 3. LAYOUT CENTERING & 660px WIDTH */
-.page .center {
-  max-width: 660px !important;
+/* 3. NARROWER COLUMN FOR MORE PADDING */
+/* Shrunk from 660px to 620px to perfectly match his character-per-line count */
+.page .center, header {
+  max-width: 620px !important;
   margin: 0 auto !important;
 }
 
-/* 4. STRIP QUARTZ LINK STYLING (Remove grey boxes) */
+/* 4. STRIP QUARTZ LINK STYLING */
 a.internal {
   background-color: transparent !important;
   padding: 0 !important;
@@ -55,14 +57,21 @@ a:hover, a.internal:hover {
   color: #3AA99F !important; /* Flexoki Cyan */
 }
 
-/* 6. GENTLE MOBILE SCALING */
+/* 6. MOBILE FIXES */
 @media all and (max-width: 768px) {
+  article,
   article p, 
   article ul, 
   article ol, 
   article li, 
   .popover-hint {
-    font-size: 15.8px !important;
-    line-height: 23.7px !important;
+    font-size: 17px !important; /* Bumping mobile size back up so it isn't tiny */
+    line-height: 1.55 !important;
+  }
+  
+  .page .center {
+    /* Safe padding so it doesn't touch the glass */
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
   }
 }
