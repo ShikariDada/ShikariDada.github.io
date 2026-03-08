@@ -1,53 +1,57 @@
 @use "./base.scss";
 
-/* 1. NATIVE SYSTEM FONTS & INKY SMOOTHING */
+/* 1. NATIVE FONTS & SMOOTHING (Removed the forced thinness) */
 :root {
-  --headerFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-  --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --headerFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
 }
 
 body {
   font-family: var(--bodyFont) !important;
-  font-weight: 400 !important;
   -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
   text-rendering: optimizeLegibility !important;
 }
 
-/* 2. TRUE DESKTOP AIRINESS */
+/* 2. AIRINESS & FONT SIZE */
+/* Letting Inter sit at its natural weight, bumping size and line-height */
 article p, 
 article ul, 
 article ol, 
 article li, 
 .popover-hint {
   font-size: 18px !important; 
-  line-height: 1.75 !important; /* Steph's massive breathing room between lines */
-  margin-bottom: 1.5em !important;
+  line-height: 1.65 !important; 
+  margin-bottom: 1.6em !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headerFont) !important;
   font-weight: 600 !important;
-  line-height: 1.4 !important;
+  line-height: 1.3 !important;
 }
 
-/* 3. THE 600px ALIGNMENT LOCK */
-/* Applying exact identical width and padding to both header and content so they perfectly left-align */
-header, .page .center {
+/* 3. THE PERFECT ALIGNMENT & NARROW COLUMN */
+/* We reset padding to 0 and force exactly 580px so they lock together */
+.page .center, 
+.page > header {
   width: 100% !important;
-  max-width: 600px !important; /* Narrower column = more side padding = Steph's look */
+  max-width: 580px !important; /* Very narrow column = massive side padding */
   margin: 0 auto !important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+  padding: 0 !important; /* Kills Quartz's misaligned hidden padding */
   box-sizing: border-box !important;
 }
 
-header {
-  margin-top: 4rem !important; /* Gives the header breathing room from the top of the browser */
-  margin-bottom: 3rem !important;
+/* 4. HEADER POSITIONING (Higher up, properly separated) */
+.page > header {
+  margin-top: 2rem !important; /* Pushed much closer to the top */
+  margin-bottom: 3.5rem !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important; /* Forces title left, buttons right */
+  align-items: center !important;
 }
 
-/* 4. STRIP QUARTZ LINK STYLING */
+/* 5. LINK STYLING */
 a.internal {
   background-color: transparent !important;
   padding: 0 !important;
@@ -55,29 +59,35 @@ a.internal {
   text-decoration: none !important;
 }
 
-/* 5. STEPH ANGO'S LINK HOVER EFFECT */
 a {
   color: var(--secondary) !important;
   transition: color 0.2s ease !important;
 }
 
 a:hover, a.internal:hover {
-  color: #3AA99F !important; /* Flexoki Cyan */
+  color: #3AA99F !important;
 }
 
-/* 6. MOBILE SCALING REVERT */
+/* 6. SANER MOBILE SCALING */
 @media all and (max-width: 768px) {
+  /* Give back just enough padding so text doesn't touch the glass */
+  .page .center, 
+  .page > header {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
   article p, 
   article ul, 
   article ol, 
   article li, 
   .popover-hint {
-    font-size: 15.5px !important; /* Shrunk back down for perfect mobile reading */
-    line-height: 1.6 !important;
+    font-size: 16px !important;
+    line-height: 1.55 !important;
   }
   
-  header {
-    margin-top: 2rem !important;
+  .page > header {
+    margin-top: 1.5rem !important; /* Even higher on mobile */
     margin-bottom: 2rem !important;
   }
 }
