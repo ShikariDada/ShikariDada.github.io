@@ -1,15 +1,22 @@
 @use "./base.scss";
-/* --- Desktop Typography (The version that worked perfectly) --- */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
+
+/* 1. OVERRIDE QUARTZ FONT VARIABLES */
+/* This stops Quartz from loading Google Fonts and forces the native system font */
+:root {
+  --headerFont: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
+  --bodyFont: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
+  --codeFont: "IBM Plex Mono", monospace !important;
+}
+
+/* 2. BASE SCALING (DESKTOP) */
+/* Quartz calculates all headers (h1, h2) relative to this root HTML size. */
+html {
   font-size: 17.85px !important;
-  line-height: 1.5 !important;
   text-rendering: optimizeLegibility;
 }
 
-.page .center {
-  max-width: 660px !important;
-  margin: 0 auto; 
+body {
+  line-height: 1.5 !important;
 }
 
 p {
@@ -17,16 +24,23 @@ p {
   margin-bottom: 1.5em;
 }
 
-/* --- Safe Mobile Override --- */
+/* 3. DESKTOP READING WIDTH */
+/* Caps the width to Steph Ango's exact 660px limit */
+.page .center, .page article {
+  max-width: 660px !important;
+  margin: 0 auto !important;
+}
+
+/* 4. MOBILE OVERRIDES */
 @media all and (max-width: 768px) {
-  body {
-    /* Slightly smaller font for phone screens */
-    font-size: 15.8px !important;
+  /* Shrinking the root size automatically and perfectly scales down all headers and text */
+  html {
+    font-size: 15.8px !important; 
   }
   
+  /* Steph Ango's exact mobile padding to keep text off the glass edges */
   .page .center {
-    /* Clean, tight padding so text doesn't hit the glass edges */
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }
