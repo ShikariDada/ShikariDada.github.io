@@ -20,7 +20,7 @@ article ul,
 article ol, 
 article li, 
 .popover-hint {
-  font-size: 21px !important; 
+  font-size: 20px !important; 
   line-height: 1.60 !important; 
   margin-bottom: 1.6em !important;
 }
@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 /* max-width creates the massive side margins; padding guarantees it never touches the glass */
 .page .center, 
 .page > header {
-  max-width: 540px !important; 
+  max-width: 500px !important; 
   margin: 0 auto !important;
   padding-left: 24px !important; /* Hardcoded bumper padding */
   padding-right: 24px !important; /* Hardcoded bumper padding */
