@@ -32,16 +32,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 3. THE PERFECT PADDING & WIDTH */
-/* Kills Quartz's master top padding so the header can slide up */
-#quartz-root, .page {
+/* Kills Quartz's master top padding entirely */
+.page {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
+/* Splitting margin left/right so it doesn't accidentally overwrite our top/bottom gaps */
 .page .center, 
-.page > header {
+header.header {
   max-width: 600px !important; 
-  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   padding-left: 40px !important; 
   padding-right: 40px !important; 
   width: 100% !important;
@@ -49,18 +51,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 4. HEADER POSITIONING & MASSIVE SEPARATION */
-.page > header {
-  margin-top: 2rem !important; /* Slides the header way up, leaving just a tiny bumper */
-  margin-bottom: 0 !important; 
+header.header {
+  margin-top: 1rem !important; /* Pulls the header right near the top edge */
+  margin-bottom: 6rem !important; /* Forces the massive gap BEFORE the note title starts */
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
 }
 
-/* THIS guarantees the gap. We are forcing the entire reading container down */
 .page .center {
-  margin-top: 6rem !important; 
+  margin-top: 0 !important; 
 }
 
 /* 5. LINK STYLING */
@@ -82,14 +83,14 @@ a:hover, a.internal:hover {
 
 /* 6. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
-  .page > header {
-    margin-top: 1.5rem !important;
+  header.header {
+    margin-top: 1rem !important;
+    margin-bottom: 3rem !important; /* Smaller gap on phones */
     padding-left: 14px !important;
     padding-right: 14px !important;
   }
   
   .page .center {
-    margin-top: 3rem !important; /* A slightly smaller, phone-friendly gap */
     padding-left: 14px !important;
     padding-right: 14px !important;
   }
@@ -108,7 +109,7 @@ a:hover, a.internal:hover {
 .article-title, 
 article h1 {
   font-size: 2.8rem !important; 
-  font-weight: 500 !important; /* Dropped from 700 down to 500 to fix the bulkiness */
+  font-weight: 500 !important; /* Dropped from 700 to 500 to remove the heavy boldness */
   letter-spacing: -0.01em !important; 
   margin-top: 0 !important;
   margin-bottom: 0.5em !important;
