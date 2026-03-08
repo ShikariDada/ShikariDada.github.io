@@ -21,37 +21,36 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local", // Stops Quartz from downloading Google Fonts
       cdnCaching: true,
       typography: {
-        // Steph uses ultra-clean system sans-serif fonts to keep it feeling native. 
-        // Inter is the closest Google Font match to that minimalist look.
-        header: "Inter",
-        body: "Inter",
+        // Replaced "Inter" with Steph Ango's exact system font stack
+        header: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
         code: "IBM Plex Mono",
       },
       colors: {
         lightMode: {
-          light: "#FFFCF0",       // Flexoki: 'paper' (Warm, inky background)
-          lightgray: "#E6E4D9",   // Flexoki: 'ui' (Subtle borders)
-          gray: "#B7B5AC",        // Flexoki: 'tx-3' (Faint text for dates/meta)
-          darkgray: "#100F0F",    // Flexoki: 'tx' (Primary body text - pure inky black)
-          dark: "#100F0F",        // Flexoki: 'tx' (Headers - pure inky black)
-          secondary: "#100F0F",   // Links and Graph Nodes (Steph keeps links black)
-          tertiary: "#CECDC3",    // Flexoki: 'ui-3' (Hover states)
-          highlight: "rgba(0, 0, 0, 0.05)", // Very subtle background for linked mentions
-          textHighlight: "#fff23688", // Required by Quartz
+          light: "#FFFCF0",       
+          lightgray: "#E6E4D9",   
+          gray: "#B7B5AC",        
+          darkgray: "#100F0F",    
+          dark: "#100F0F",        
+          secondary: "#100F0F",   
+          tertiary: "#CECDC3",    
+          highlight: "rgba(0, 0, 0, 0.05)", 
+          textHighlight: "#fff23688", 
         },
         darkMode: {
-          light: "#100F0F",       // Flexoki: 'bg' (Deep inky black background)
-          lightgray: "#282726",   // Flexoki: 'ui' (Dark borders)
-          gray: "#575653",        // Flexoki: 'tx-3' (Faint text for dates/meta)
-          darkgray: "#CECDC3",    // Flexoki: 'tx' (Primary body text - warm off-white)
-          dark: "#CECDC3",        // Flexoki: 'tx' (Headers - warm off-white)
-          secondary: "#CECDC3",   // Links and Graph Nodes
-          tertiary: "#403E3C",    // Flexoki: 'ui-3' (Hover states)
-          highlight: "rgba(255, 255, 255, 0.1)", // Subtle highlight
-          textHighlight: "#b3aa0288", // Required by Quartz
+          light: "#100F0F",       
+          lightgray: "#282726",   
+          gray: "#575653",        
+          darkgray: "#CECDC3",    
+          dark: "#CECDC3",        
+          secondary: "#CECDC3",   
+          tertiary: "#403E3C",    
+          highlight: "rgba(255, 255, 255, 0.1)", 
+          textHighlight: "#b3aa0288", 
         },
       },
     },
