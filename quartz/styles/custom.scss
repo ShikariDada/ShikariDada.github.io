@@ -1,42 +1,24 @@
 @use "./base.scss";
 
-/* 1. COMPLETELY DESTROY QUARTZ GRID */
-/* This forces the main container to be a single, centered block instead of a 3-column grid */
-.page {
-  display: block !important;
-  max-width: 660px !important;
-  margin: 0 auto !important;
-  padding: 2rem 20px !important; 
-}
-
-/* Hide the structural sidebars even if they are empty */
-.sidebar {
-  display: none !important;
-}
-
-/* Force the reading area to take up the full 660px */
-.center, .center-body {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 2. FORCE NATIVE SYSTEM FONTS */
+/* 1. ROOT VARIABLES & SYSTEM FONTS */
 :root {
   --headerFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
   --bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
-html, body, p, h1, h2, h3, h4, h5, h6, a, span, div {
+/* Force every element to use the system font */
+* {
   font-family: var(--bodyFont) !important;
 }
 
-/* 3. EXACT DESKTOP TYPOGRAPHY */
+/* 2. BASE SCALING (Exact Desktop) */
 html {
   font-size: 17.85px !important;
-  line-height: 1.5 !important;
   text-rendering: optimizeLegibility;
+}
+
+body {
+  line-height: 1.5 !important;
 }
 
 p {
@@ -44,12 +26,61 @@ p {
   margin-bottom: 1.5rem !important;
 }
 
-/* 4. MOBILE SCALING */
+/* 3. FIX THE LAYOUT (Clean Single Column) */
+#quartz-body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Ensure the reading area is exactly 660px and centered */
+.center {
+  width: 100% !important;
+  max-width: 660px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Ensure the header matches the content width and aligns in a neat row */
+header {
+  width: 100% !important;
+  max-width: 660px !important;
+  margin: 2rem auto 2rem auto !important; 
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+/* Hide any remaining structural sidebars */
+.left, .right {
+  display: none !important;
+}
+
+/* 4. LINK HOVER EFFECT (Steph's Turquoise) */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease !important;
+}
+
+a:hover, a.internal:hover {
+  color: #3AA99F !important; /* Flexoki Cyan */
+}
+
+/* 5. EXACT MOBILE PADDING & SCALING */
 @media all and (max-width: 768px) {
   html {
     font-size: 15.8px !important;
   }
+  
   .page {
-    padding: 1rem 15px !important;
+    /* Significantly reduced padding to match his tight mobile layout */
+    padding: 0 16px !important;
+  }
+
+  header {
+    margin: 1rem auto 1.5rem auto !important;
   }
 }
