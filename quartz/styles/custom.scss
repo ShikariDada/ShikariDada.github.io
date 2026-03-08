@@ -14,29 +14,37 @@ body {
   text-rendering: optimizeLegibility !important;
 }
 
-/* 2. TRUE DESKTOP SIZING & BREATHING SPACE */
-/* By targeting 'article', we enlarge the reading text without breaking the UI */
-article,
+/* 2. TRUE DESKTOP AIRINESS */
 article p, 
 article ul, 
 article ol, 
 article li, 
 .popover-hint {
-  font-size: 19px !important; /* Bumped up for true native size */
-  line-height: 1.65 !important; /* Generous breathing room between lines */
-  margin-bottom: 1.8em !important; /* Extra space between paragraphs */
+  font-size: 18px !important; 
+  line-height: 1.75 !important; /* Steph's massive breathing room between lines */
+  margin-bottom: 1.5em !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headerFont) !important;
   font-weight: 600 !important;
+  line-height: 1.4 !important;
 }
 
-/* 3. NARROWER COLUMN FOR MORE PADDING */
-/* Shrunk from 660px to 620px to perfectly match his character-per-line count */
-.page .center, header {
-  max-width: 620px !important;
+/* 3. THE 600px ALIGNMENT LOCK */
+/* Applying exact identical width and padding to both header and content so they perfectly left-align */
+header, .page .center {
+  width: 100% !important;
+  max-width: 600px !important; /* Narrower column = more side padding = Steph's look */
   margin: 0 auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+header {
+  margin-top: 4rem !important; /* Gives the header breathing room from the top of the browser */
+  margin-bottom: 3rem !important;
 }
 
 /* 4. STRIP QUARTZ LINK STYLING */
@@ -57,21 +65,19 @@ a:hover, a.internal:hover {
   color: #3AA99F !important; /* Flexoki Cyan */
 }
 
-/* 6. MOBILE FIXES */
+/* 6. MOBILE SCALING REVERT */
 @media all and (max-width: 768px) {
-  article,
   article p, 
   article ul, 
   article ol, 
   article li, 
   .popover-hint {
-    font-size: 17px !important; /* Bumping mobile size back up so it isn't tiny */
-    line-height: 1.55 !important;
+    font-size: 15.5px !important; /* Shrunk back down for perfect mobile reading */
+    line-height: 1.6 !important;
   }
   
-  .page .center {
-    /* Safe padding so it doesn't touch the glass */
-    padding-left: 1.2rem !important;
-    padding-right: 1.2rem !important;
+  header {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
   }
 }
