@@ -49,23 +49,21 @@ header {
   box-sizing: border-box !important;
 }
 
-/* 5. HEADER POSITIONING & ALIGNMENT */
+/* 5. HEADER POSITIONING & ALIGNMENT (The Bulletproof Fix) */
 header {
-  margin-top: 3.5rem !important; /* Increased from 2rem for a bit more top padding */
-  margin-bottom: 4.5rem !important; /* The gap before the note title */
+  margin-top: 2.5rem !important; /* Dialed back down for a closer, cleaner top edge */
+  margin-bottom: 4.5rem !important; 
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
+  justify-content: flex-end !important; /* Aligns Search/Moon to the right */
+  gap: 1.5rem !important; /* Puts clean spacing between the Search bar and Moon icon */
 }
 
-/* Wakes up Quartz's spacer component to push title left and buttons right */
-header .spacer {
-  flex: 1 1 auto !important; 
-}
-
-/* Adds a small gap between the Search bar and the Moon icon */
-.search {
-  margin-right: 1rem !important;
+/* This forces the Site Title to the absolute left, shoving the buttons to the right */
+header .page-title {
+  margin-right: auto !important;
+  margin-top: 0 !important;
 }
 
 /* 6. LINK STYLING */
@@ -88,7 +86,7 @@ a:hover, a.internal:hover {
 /* 7. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
   header {
-    margin-top: 2rem !important;
+    margin-top: 1.5rem !important;
     margin-bottom: 2.5rem !important; 
     padding-left: 14px !important;
     padding-right: 14px !important;
@@ -109,11 +107,11 @@ a:hover, a.internal:hover {
   }
 }
 
-/* 8. NOTE TITLE SIZE (Thinner and Cleaner) */
+/* 8. NOTE TITLE SIZE */
 .article-title, 
 article h1 {
   font-size: 2.8rem !important; 
-  font-weight: 500 !important; 
+  font-weight: 510 !important; 
   letter-spacing: -0.01em !important; 
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
