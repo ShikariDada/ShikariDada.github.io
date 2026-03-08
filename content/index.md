@@ -17,7 +17,6 @@ If these explorations help someone think more clearly, see differently, or find 
 ---
 
 ### 🗺️ Explorations
-*(We will link your structured folders here in the next step)*
 
 \- \[\[an-idea-about-birth-and-probability]]
 
