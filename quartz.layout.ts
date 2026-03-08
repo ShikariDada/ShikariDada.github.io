@@ -1,7 +1,29 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
-// components shared across all pages
+// ==========================================
+// SHARED COMPONENTS
+// ==========================================
+export const sharedPageComponents: SharedLayout = {
+  head: Component.Head(),
+  // Site title, search, and dark mode moved to the top header for the single-column look
+  header: [
+    Component.PageTitle(),
+    Component.Spacer(),
+    Component.Search(),
+    Component.Darkmode(),
+  ],
+  afterBody: [],
+  // Your custom social/community links
+  footer: Component.Footer({
+    links: {
+      Instagram: "https://www.instagram.com/zerothlayer?igsh=OGF2ZnowdG1hbWhq",
+      "Discord Community": "https://discord.gg/Uzs63XGuS",
+    },
+  }),
+}
+
+/* --- DEFAULT SHARED COMPONENTS (Commented out for future reference) ---
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
@@ -13,8 +35,12 @@ export const sharedPageComponents: SharedLayout = {
     },
   }),
 }
+---------------------------------------------------------------------- */
 
-// components for pages that display a single page (e.g. a single note)
+
+// ==========================================
+// SINGLE NOTE LAYOUT
+// ==========================================
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.ConditionalRender({
@@ -25,44 +51,4 @@ export const defaultContentPageLayout: PageLayout = {
     Component.ContentMeta(),
     Component.TagList(),
   ],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
-      ],
-    }),
-    Component.Explorer(),
-  ],
-  right: [
-    Component.Graph(),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.Backlinks(),
-  ],
-}
-
-// components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-      ],
-    }),
-    Component.Explorer(),
-  ],
-  right: [],
-}
+  // Left and Right sidebars
