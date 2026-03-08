@@ -1,34 +1,39 @@
 @use "./base.scss";
 
-/* 1. FORCE EXACT SYSTEM FONTS ON EVERYTHING */
-/* The asterisk (*) guarantees Quartz's built-in variables can't override this */
-* {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-}
-
-/* 2. THE STEPH ANGO CONTAINER */
-/* This wraps the Header, the Content, and the Footer into one single 660px column */
+/* 1. COMPLETELY DESTROY QUARTZ GRID */
+/* This forces the main container to be a single, centered block instead of a 3-column grid */
 .page {
+  display: block !important;
   max-width: 660px !important;
   margin: 0 auto !important;
-  padding: 2rem 20px !important; /* 20px keeps text off the edges of mobile screens */
+  padding: 2rem 20px !important; 
 }
 
-/* 3. DESTROY THE QUARTZ GRID */
-/* This stops Quartz from indenting your text and creating invisible sidebars */
-#quartz-body {
-  display: block !important;
-  width: 100% !important;
+/* Hide the structural sidebars even if they are empty */
+.sidebar {
+  display: none !important;
 }
 
+/* Force the reading area to take up the full 660px */
 .center, .center-body {
+  width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* 4. EXACT DESKTOP SIZING */
-html, body {
+/* 2. FORCE NATIVE SYSTEM FONTS */
+:root {
+  --headerFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --bodyFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+html, body, p, h1, h2, h3, h4, h5, h6, a, span, div {
+  font-family: var(--bodyFont) !important;
+}
+
+/* 3. EXACT DESKTOP TYPOGRAPHY */
+html {
   font-size: 17.85px !important;
   line-height: 1.5 !important;
   text-rendering: optimizeLegibility;
@@ -39,9 +44,9 @@ p {
   margin-bottom: 1.5rem !important;
 }
 
-/* 5. MOBILE SCALING */
+/* 4. MOBILE SCALING */
 @media all and (max-width: 768px) {
-  html, body {
+  html {
     font-size: 15.8px !important;
   }
   .page {
