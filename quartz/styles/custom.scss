@@ -1,46 +1,50 @@
 @use "./base.scss";
 
-/* 1. OVERRIDE QUARTZ FONT VARIABLES */
-/* This stops Quartz from loading Google Fonts and forces the native system font */
-:root {
-  --headerFont: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
-  --bodyFont: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
-  --codeFont: "IBM Plex Mono", monospace !important;
+/* 1. FORCE EXACT SYSTEM FONTS ON EVERYTHING */
+/* The asterisk (*) guarantees Quartz's built-in variables can't override this */
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
 
-/* 2. BASE SCALING (DESKTOP) */
-/* Quartz calculates all headers (h1, h2) relative to this root HTML size. */
-html {
+/* 2. THE STEPH ANGO CONTAINER */
+/* This wraps the Header, the Content, and the Footer into one single 660px column */
+.page {
+  max-width: 660px !important;
+  margin: 0 auto !important;
+  padding: 2rem 20px !important; /* 20px keeps text off the edges of mobile screens */
+}
+
+/* 3. DESTROY THE QUARTZ GRID */
+/* This stops Quartz from indenting your text and creating invisible sidebars */
+#quartz-body {
+  display: block !important;
+  width: 100% !important;
+}
+
+.center, .center-body {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 4. EXACT DESKTOP SIZING */
+html, body {
   font-size: 17.85px !important;
-  text-rendering: optimizeLegibility;
-}
-
-body {
   line-height: 1.5 !important;
+  text-rendering: optimizeLegibility;
 }
 
 p {
   line-height: 1.5 !important;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.5rem !important;
 }
 
-/* 3. DESKTOP READING WIDTH */
-/* Caps the width to Steph Ango's exact 660px limit */
-.page .center, .page article {
-  max-width: 660px !important;
-  margin: 0 auto !important;
-}
-
-/* 4. MOBILE OVERRIDES */
+/* 5. MOBILE SCALING */
 @media all and (max-width: 768px) {
-  /* Shrinking the root size automatically and perfectly scales down all headers and text */
-  html {
-    font-size: 15.8px !important; 
+  html, body {
+    font-size: 15.8px !important;
   }
-  
-  /* Steph Ango's exact mobile padding to keep text off the glass edges */
-  .page .center {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+  .page {
+    padding: 1rem 15px !important;
   }
 }
