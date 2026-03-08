@@ -20,8 +20,8 @@ article ul,
 article ol, 
 article li, 
 .popover-hint {
-  font-size: 20px !important; 
-  line-height: 1.65 !important; 
+  font-size: 21px !important; 
+  line-height: 1.60 !important; 
   margin-bottom: 1.6em !important;
 }
 
@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 /* max-width creates the massive side margins; padding guarantees it never touches the glass */
 .page .center, 
 .page > header {
-  max-width: 560px !important; 
+  max-width: 540px !important; 
   margin: 0 auto !important;
   padding-left: 24px !important; /* Hardcoded bumper padding */
   padding-right: 24px !important; /* Hardcoded bumper padding */
@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 4. HEADER POSITIONING (Proper top spacing) */
 .page > header {
-  margin-top: 2rem !important; /* Gives you that deep top padding Steph has */
+  margin-top: 0rem !important; /* Gives you that deep top padding Steph has */
   margin-bottom: 3rem !important;
   display: flex !important;
   flex-direction: row !important;
@@ -74,8 +74,8 @@ a:hover, a.internal:hover {
 @media all and (max-width: 768px) {
   .page .center, 
   .page > header {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
   }
 
   article p, 
