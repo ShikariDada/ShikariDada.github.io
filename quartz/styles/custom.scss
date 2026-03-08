@@ -40,43 +40,69 @@
 // }
 
 /* 1. Global Font Family Override */
-* {
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
+// * {
+//   font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif !important;
+// }
+
+// /* 2. Desktop Typography (Steph Ango exact specs) */
+// html, body {
+//   font-size: 17.85px !important;
+//   line-height: 1.5 !important;
+//   text-rendering: optimizeLegibility;
+// }
+
+// p {
+//   line-height: 1.5 !important;
+//   margin-bottom: 1.5em;
+// }
+
+// /* 3. Constrain Desktop Reading Width */
+// .page .center {
+//   max-width: 660px !important;
+//   margin: 0 auto;
+// }
+
+// /* 4. Mobile View Overrides */
+// @media all and (max-width: 768px) {
+//   /* Reduce base font size for phone screens */
+//   html, body {
+//     font-size: 15.8px !important;
+//   }
+  
+//   /* Reset padding to a crisp, tight 20px (Steph Ango style) */
+//   .page .center {
+//     padding-left: 20px !important;
+//     padding-right: 20px !important;
+//   }
+  
+//   /* Ensure mobile headers stay properly proportioned */
+//   h1 { font-size: 1.8rem !important; }
+//   h2 { font-size: 1.5rem !important; }
+//   h3 { font-size: 1.25rem !important; }
+// }
+
+/* 1. Override Quartz's Root Variables */
+:root {
+  /* Force system fonts exactly like Steph Ango */
+  --headerFont: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif;
+  --bodyFont: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", Segoe UI, Helvetica, Arial, sans-serif;
+  
+  /* Constrain the exact reading width */
+  --page-width: 660px;
 }
 
-/* 2. Desktop Typography (Steph Ango exact specs) */
-html, body {
-  font-size: 17.85px !important;
-  line-height: 1.5 !important;
+/* 2. Desktop Typography */
+html {
+  font-size: 17.85px;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
 
-p {
-  line-height: 1.5 !important;
-  margin-bottom: 1.5em;
-}
-
-/* 3. Constrain Desktop Reading Width */
-.page .center {
-  max-width: 660px !important;
-  margin: 0 auto;
-}
-
-/* 4. Mobile View Overrides */
+/* 3. Mobile Typography */
 @media all and (max-width: 768px) {
-  /* Reduce base font size for phone screens */
-  html, body {
-    font-size: 15.8px !important;
+  html {
+    /* Quartz uses 'rem' for headers. By only changing the base html size here, 
+       Quartz will automatically and perfectly scale all your headers for mobile! */
+    font-size: 15.8px;
   }
-  
-  /* Reset padding to a crisp, tight 20px (Steph Ango style) */
-  .page .center {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-  
-  /* Ensure mobile headers stay properly proportioned */
-  h1 { font-size: 1.8rem !important; }
-  h2 { font-size: 1.5rem !important; }
-  h3 { font-size: 1.25rem !important; }
 }
