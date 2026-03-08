@@ -31,15 +31,15 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3 !important;
 }
 
-/* 3. RESET TOP SPACING */
-body, .page {
+/* 3. RESET TOP SPACING (Targeting #quartz-root removes all hidden push-down) */
+body, .page, #quartz-root {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
 /* 4. THE PERFECT PADDING & WIDTH */
 .page .center, 
-header { 
+.page-header { 
   max-width: 600px !important; 
   margin-left: auto !important;
   margin-right: auto !important;
@@ -49,21 +49,29 @@ header {
   box-sizing: border-box !important;
 }
 
-/* 5. HEADER POSITIONING & ALIGNMENT (The Bulletproof Fix) */
-header {
-  margin-top: 2rem !important; /* Dialed back down for a closer, cleaner top edge */
-  margin-bottom: 4.5rem !important; 
+/* 5. HEADER POSITIONING & ALIGNMENT (The Real Fix) */
+.page-header {
+  margin-top: 1rem !important; /* Pulls the header tight to the top edge */
+  margin-bottom: 5rem !important; /* Massive gap before the note title */
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  justify-content: flex-end !important; /* Aligns Search/Moon to the right */
-  gap: 1.5rem !important; /* Puts clean spacing between the Search bar and Moon icon */
 }
 
-/* This forces the Site Title to the absolute left, shoving the buttons to the right */
-header .page-title {
-  margin-right: auto !important;
-  margin-top: 0 !important;
+/* Force the Site Title to the absolute left wall */
+.page-header .page-title {
+  margin: 0 !important;
+  margin-right: auto !important; /* This shoves the buttons to the right */
+}
+
+/* Adds a small gap between the Search bar and the Moon icon */
+.page-header .search {
+  margin-right: 1.2rem !important;
+}
+
+/* Kill Quartz's buggy spacer so it stops interfering */
+.page-header .spacer {
+  display: none !important;
 }
 
 /* 6. LINK STYLING */
@@ -85,7 +93,7 @@ a:hover, a.internal:hover {
 
 /* 7. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
-  header {
+  .page-header {
     margin-top: 1.5rem !important;
     margin-bottom: 2.5rem !important; 
     padding-left: 14px !important;
@@ -111,7 +119,7 @@ a:hover, a.internal:hover {
 .article-title, 
 article h1 {
   font-size: 2.8rem !important; 
-  font-weight: 510 !important; 
+  font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
