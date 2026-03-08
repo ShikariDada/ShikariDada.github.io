@@ -1,6 +1,6 @@
 @use "./base.scss";
 
-/* 1. NATIVE FONTS & SMOOTHING (Restored the good, clean weight) */
+/* 1. NATIVE FONTS & SMOOTHING */
 :root {
   --headerFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
   --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
@@ -8,13 +8,13 @@
 
 body {
   font-family: var(--bodyFont) !important;
-  font-weight: 400 !important; /* Brought this back so the font looks thin and crisp */
+  font-weight: 400 !important; 
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale !important;
   text-rendering: optimizeLegibility !important;
 }
 
-/* 2. AIRINESS & BIGGER FONT (Restored the 20px size) */
+/* 2. AIRINESS & BIGGER FONT */
 article p, 
 article ul, 
 article ol, 
@@ -32,29 +32,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 3. THE PERFECT PADDING & WIDTH */
-/* max-width creates the massive side margins; padding guarantees it never touches the glass */
-.page {
-  padding-top: 1.5rem !important; /* Overrides Quartz's massive default top padding to pull the header up */
+/* Kills Quartz's master top padding so the header can slide up */
+#quartz-root, .page {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 .page .center, 
 .page > header {
   max-width: 600px !important; 
   margin: 0 auto !important;
-  padding-left: 40px !important; /* Hardcoded bumper padding */
-  padding-right: 40px !important; /* Hardcoded bumper padding */
+  padding-left: 40px !important; 
+  padding-right: 40px !important; 
   width: 100% !important;
   box-sizing: border-box !important;
 }
 
-/* 4. HEADER POSITIONING (Proper top spacing & massive separation) */
+/* 4. HEADER POSITIONING & MASSIVE SEPARATION */
 .page > header {
-  margin-top: 0 !important; 
-  margin-bottom: 6rem !important; /* The massive gap before the reading section begins */
+  margin-top: 2rem !important; /* Slides the header way up, leaving just a tiny bumper */
+  margin-bottom: 0 !important; 
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
+}
+
+/* THIS guarantees the gap. We are forcing the entire reading container down */
+.page .center {
+  margin-top: 6rem !important; 
 }
 
 /* 5. LINK STYLING */
@@ -76,12 +82,14 @@ a:hover, a.internal:hover {
 
 /* 6. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
-  .page {
-    padding-top: 1rem !important;
+  .page > header {
+    margin-top: 1.5rem !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
   }
   
-  .page .center, 
-  .page > header {
+  .page .center {
+    margin-top: 3rem !important; /* A slightly smaller, phone-friendly gap */
     padding-left: 14px !important;
     padding-right: 14px !important;
   }
@@ -94,18 +102,14 @@ a:hover, a.internal:hover {
     font-size: 16.5px !important;
     line-height: 1.6 !important;
   }
-  
-  .page > header {
-    margin-bottom: 3rem !important; /* Keeps it airy on mobile without taking up the whole screen */
-  }
 }
 
-/* 7. NOTE TITLE SIZE (The "How I use Obsidian" look) */
+/* 7. NOTE TITLE SIZE (Thinner and Cleaner) */
 .article-title, 
 article h1 {
-  font-size: 2.8rem !important; /* Massive, commanding size */
-  font-weight: 700 !important; /* Bolder than standard headers */
-  letter-spacing: -0.02em !important; /* Tightens the letters slightly for a premium feel */
+  font-size: 2.8rem !important; 
+  font-weight: 500 !important; /* Dropped from 700 down to 500 to fix the bulkiness */
+  letter-spacing: -0.01em !important; 
   margin-top: 0 !important;
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
