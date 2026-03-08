@@ -14,7 +14,7 @@ body {
   text-rendering: optimizeLegibility !important;
 }
 
-/* 2. AIRINESS & BIGGER FONT (Restored the 19px size) */
+/* 2. AIRINESS & BIGGER FONT (Restored the 20px size) */
 article p, 
 article ul, 
 article ol, 
@@ -33,6 +33,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 3. THE PERFECT PADDING & WIDTH */
 /* max-width creates the massive side margins; padding guarantees it never touches the glass */
+.page {
+  padding-top: 1.5rem !important; /* Overrides Quartz's massive default top padding to pull the header up */
+}
+
 .page .center, 
 .page > header {
   max-width: 600px !important; 
@@ -43,10 +47,10 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box !important;
 }
 
-/* 4. HEADER POSITIONING (Proper top spacing) */
+/* 4. HEADER POSITIONING (Proper top spacing & massive separation) */
 .page > header {
-  margin-top: 0rem !important; /* Gives you that deep top padding Steph has */
-  margin-bottom: 5rem !important;
+  margin-top: 0 !important; 
+  margin-bottom: 6rem !important; /* The massive gap before the reading section begins */
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
@@ -72,6 +76,10 @@ a:hover, a.internal:hover {
 
 /* 6. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
+  .page {
+    padding-top: 1rem !important;
+  }
+  
   .page .center, 
   .page > header {
     padding-left: 14px !important;
@@ -88,7 +96,17 @@ a:hover, a.internal:hover {
   }
   
   .page > header {
-    margin-top: 2rem !important;
-    margin-bottom: 2rem !important;
+    margin-bottom: 3rem !important; /* Keeps it airy on mobile without taking up the whole screen */
   }
+}
+
+/* 7. NOTE TITLE SIZE (The "How I use Obsidian" look) */
+.article-title, 
+article h1 {
+  font-size: 2.8rem !important; /* Massive, commanding size */
+  font-weight: 700 !important; /* Bolder than standard headers */
+  letter-spacing: -0.02em !important; /* Tightens the letters slightly for a premium feel */
+  margin-top: 0 !important;
+  margin-bottom: 0.5em !important;
+  line-height: 1.1 !important;
 }
