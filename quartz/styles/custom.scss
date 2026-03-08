@@ -31,15 +31,15 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3 !important;
 }
 
-/* 3. THE PERFECT PADDING & WIDTH */
-/* SLEDGEHAMMER: Kill all default top spacing across Quartz's hidden wrappers */
-body, .page, .center, .page-header {
+/* 3. RESET TOP SPACING */
+body, .page {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
+/* 4. THE PERFECT PADDING & WIDTH */
 .page .center, 
-header { /* Removed the typo here so it actually targets the header tag! */
+header { 
   max-width: 600px !important; 
   margin-left: auto !important;
   margin-right: auto !important;
@@ -49,23 +49,26 @@ header { /* Removed the typo here so it actually targets the header tag! */
   box-sizing: border-box !important;
 }
 
-/* 4. HEADER POSITIONING & MASSIVE SEPARATION */
+/* 5. HEADER POSITIONING & ALIGNMENT */
 header {
-  margin-top: 2rem !important; /* The ONLY top spacing allowed; puts it right near the top edge */
-  margin-bottom: 4rem !important; /* Pushes the note name far down */
+  margin-top: 3.5rem !important; /* Increased from 2rem for a bit more top padding */
+  margin-bottom: 4.5rem !important; /* The gap before the note title */
   display: flex !important;
   flex-direction: row !important;
-  justify-content: space-between !important;
   align-items: center !important;
 }
 
-/* Double-down guarantee: forcibly push the note title down away from the header */
-.breadcrumb-container, 
-.article-title {
-  margin-top: 4rem !important; 
+/* Wakes up Quartz's spacer component to push title left and buttons right */
+header .spacer {
+  flex: 1 1 auto !important; 
 }
 
-/* 5. LINK STYLING */
+/* Adds a small gap between the Search bar and the Moon icon */
+.search {
+  margin-right: 1rem !important;
+}
+
+/* 6. LINK STYLING */
 a.internal {
   background-color: transparent !important;
   padding: 0 !important;
@@ -82,18 +85,13 @@ a:hover, a.internal:hover {
   color: #3AA99F !important;
 }
 
-/* 6. SAFE MOBILE SCALING */
+/* 7. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
   header {
-    margin-top: 1rem !important;
-    margin-bottom: 2rem !important; 
+    margin-top: 2rem !important;
+    margin-bottom: 2.5rem !important; 
     padding-left: 14px !important;
     padding-right: 14px !important;
-  }
-  
-  .breadcrumb-container, 
-  .article-title {
-    margin-top: 2rem !important;
   }
   
   .page .center {
@@ -111,11 +109,11 @@ a:hover, a.internal:hover {
   }
 }
 
-/* 7. NOTE TITLE SIZE (Thinner and Cleaner) */
+/* 8. NOTE TITLE SIZE (Thinner and Cleaner) */
 .article-title, 
 article h1 {
   font-size: 2.8rem !important; 
-  font-weight: 550 !important; 
+  font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
