@@ -21,12 +21,11 @@ const config: QuartzConfig = {
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
-      fontOrigin: "local", // Stops Quartz from downloading Google Fonts
+      fontOrigin: "googleFonts", // Turn this back on!
       cdnCaching: true,
       typography: {
-        // Replaced "Inter" with Steph Ango's exact system font stack
-        header: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-        body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        header: "Inter",
+        body: "Inter",
         code: "IBM Plex Mono",
       },
       colors: {
