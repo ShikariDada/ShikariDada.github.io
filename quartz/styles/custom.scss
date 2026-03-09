@@ -48,11 +48,11 @@ body {
   width: 100% !important;
 }
 
-/* Target the anchor <a> tag directly to force the thin font weight */
+/* Bumps "Zeroth Layer" to perfectly match the 20px body text */
 h2.page-title,
 h2.page-title a {
-  font-size: 1.3rem !important; 
-  font-weight: 400 !important;
+  font-size: 20px !important; /* Standardized exactly with article p */
+  font-weight: 400 !important; 
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -123,8 +123,9 @@ a:hover, a.internal:hover {
     margin-top: 1.5rem !important; /* Tighter to the top on phones */
   }
   
-  h2.page-title {
-    font-size: 1.2rem !important;
+  h2.page-title,
+  h2.page-title a {
+    font-size: 16.5px !important; /* Standardized exactly with mobile article p */
   }
   
   article.popover-hint {
