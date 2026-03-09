@@ -174,3 +174,41 @@ footer ul {
 .footer-logo img:hover {
   transform: scale(1.08) !important; 
 }
+
+/* 10. STEPH ANGO HOMEPAGE CLONE STYLES */
+/* The tiny, gray section headers */
+.muted-header {
+  font-size: 15px !important;
+  color: var(--gray) !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+}
+
+/* The barely-there separation lines */
+hr.minimal-divider {
+  border: none !important;
+  border-top: 1px solid rgba(150, 150, 150, 0.2) !important; 
+  margin: 3rem 0 !important; /* Massive breathing room between sections */
+}
+
+/* The strict, 2-column writing archive */
+ul.clean-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+ul.clean-list li {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 2rem !important; /* The space between the date and the title */
+  margin-bottom: 0.8rem !important;
+}
+
+/* The fixed-width, muted date text */
+.list-date {
+  color: var(--gray) !important;
+  font-family: monospace !important; /* Monospace keeps the dates perfectly aligned vertically */
+  font-size: 15px !important;
+  padding-top: 3px !important; /* Micro-adjustment to perfectly align with the 20px link text */
+}
