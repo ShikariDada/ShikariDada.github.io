@@ -6,38 +6,63 @@
   --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
 }
 
-/* Eradicate default browser margins pushing from the very top */
-html, body, #quartz-root {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
 body {
   font-family: var(--bodyFont) !important;
   font-weight: 400 !important; 
   -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-  text-rendering: optimizeLegibility !important;
 }
 
-/* 2. THE TOP MARGIN FIX */
+/* 2. THE READING COLUMN & WIDTH */
+/* Locked at exactly 600px with your perfect 40px bumper padding */
+.page .center, 
+header {
+  max-width: 600px !important; 
+  margin: 0 auto !important;
+  padding-left: 40px !important; 
+  padding-right: 40px !important; 
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 3. THE UPPERMOST SECTION (Top alignment and size) */
 .page {
-  padding-top: 0rem !important; 
+  padding-top: 0 !important; 
   margin-top: 0 !important;
 }
 
-/* THE SMOKING GUN: Targeting the h2 correctly to kill the hidden browser push-down */
+header {
+  padding-top: 2rem !important; /* Uses indestructible padding to set the gap from the top of the browser */
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+/* Makes "Zeroth Layer" smaller and kills any hidden push-down */
 h2.page-title {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+  font-size: 1.1rem !important; /* Dropped the size to look much sleeker */
+  font-weight: 500 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* 3. AIRINESS & BIGGER FONT */
+/* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
+h1.article-title {
+  font-size: 2.8rem !important; 
+  font-weight: 500 !important; 
+  letter-spacing: -0.01em !important; 
+  padding-top: 5.5rem !important; /* INDESTRUCTIBLE GAP: Forces 5.5rem of pure blank space above the text */
+  margin-top: 0 !important;
+  margin-bottom: 0.5em !important;
+  line-height: 1.1 !important;
+}
+
+/* 5. ARTICLE TEXT & AIRINESS */
 article p, 
 article ul, 
 article ol, 
-article li, 
-.popover-hint p { /* Specific target so we don't mess up the wrapper */
+article li {
   font-size: 20px !important; 
   line-height: 1.60 !important; 
   margin-bottom: 1.6em !important;
@@ -47,27 +72,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--headerFont) !important;
   font-weight: 600 !important;
   line-height: 1.3 !important;
-}
-
-/* 4. THE PERFECT PADDING & WIDTH */
-.page .center, 
-.page > header {
-  max-width: 600px !important; 
-  margin: 0 auto !important;
-  padding-left: 40px !important; 
-  padding-right: 40px !important; 
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* 5. HEADER POSITIONING (Your working alignment code) */
-.page > header {
-  margin-top: 1.5rem !important; /* Adjust this single number to move it closer/further from the top edge */
-  margin-bottom: 0 !important; 
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
-  align-items: center !important;
 }
 
 /* 6. LINK STYLING */
@@ -87,43 +91,31 @@ a:hover, a.internal:hover {
   color: #3AA99F !important;
 }
 
-/* 7. SAFE MOBILE SCALING */
+/* 7. MOBILE SCALING */
 @media all and (max-width: 768px) {
-  .page {
-    padding-top: 0 !important; 
+  .page .center, 
+  header {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
   }
   
-  .page > header {
-    margin-top: 1rem !important;
+  header {
+    padding-top: 1.5rem !important;
+  }
+  
+  h2.page-title {
+    font-size: 1rem !important;
   }
   
   h1.article-title {
-    margin-top: 3rem !important; 
-  }
-
-  .page .center, 
-  .page > header {
-    padding-left: 14px !important;
-    padding-right: 14px !important;
+    padding-top: 3rem !important; 
   }
 
   article p, 
   article ul, 
   article ol, 
-  article li, 
-  .popover-hint p {
+  article li {
     font-size: 16.5px !important;
     line-height: 1.6 !important;
   }
-}
-
-/* 8. MASSIVE SEPARATION GAP & NOTE TITLE */
-/* Now successfully targeting the exact h1 tag from your HTML snippet */
-h1.article-title {
-  font-size: 2.8rem !important; 
-  font-weight: 500 !important; 
-  letter-spacing: -0.01em !important; 
-  margin-top: 5rem !important; /* THE MASSIVE GAP */
-  margin-bottom: 0.5em !important;
-  line-height: 1.1 !important;
 }
