@@ -141,3 +141,24 @@ a:hover, a.internal:hover {
     line-height: 1.6 !important;
   }
 }
+
+/* 9. FOOTER CIRCULAR LOGO & ALIGNMENT */
+footer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Forces the footer to the left wall */
+  margin-top: 6rem !important; /* Gives massive breathing room above the footer */
+}
+
+.footer-logo img {
+  width: 45px !important; /* Exact size of Steph's doodle */
+  height: 45px !important;
+  border-radius: 50% !important; /* Forces it into a perfect circle */
+  object-fit: cover !important;
+  transition: transform 0.2s ease !important;
+  margin-bottom: 2rem !important; /* Space between the logo and your social links */
+}
+
+.footer-logo img:hover {
+  transform: scale(1.08) !important; /* Tiny pop effect when someone hovers over it */
+}
