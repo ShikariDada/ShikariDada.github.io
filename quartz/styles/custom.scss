@@ -60,7 +60,7 @@ h2.page-title a {
 /* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
 article.popover-hint {
   margin-top: 0 !important;
-  padding-top: 0.5rem !important; /* INDESTRUCTIBLE GAP: This guarantees the massive space above the title */
+  padding-top: 0rem !important; /* INDESTRUCTIBLE GAP: This guarantees the massive space above the title */
 }
 
 h1.article-title {
@@ -75,7 +75,7 @@ h1.article-title {
 /* Isolates the date text so we can control exactly how much space is under it */
 p.content-meta {
   margin-top: 0 !important;
-  margin-bottom: 2.5rem !important; /* Tweak this number to control the gap before the reading text begins */
+  margin-bottom: 2rem !important; /* Tweak this number to control the gap before the reading text begins */
 }
 
 /* 5. ARTICLE TEXT & AIRINESS */
