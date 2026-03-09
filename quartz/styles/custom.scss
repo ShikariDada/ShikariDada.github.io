@@ -1,14 +1,15 @@
 @use "./base.scss";
 
-/* 1. NATIVE FONTS & SMOOTHING */
+/* 1. THE ROOF CRUSHER (Eradicates default browser margins) */
+html, body, #quartz-root {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 2. NATIVE FONTS & SMOOTHING */
 :root {
   --headerFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
   --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
-}
-
-html, body, #quartz-root, .page {
-  margin-top: 0 !important; 
-  padding-top: 0 !important;
 }
 
 body {
@@ -19,7 +20,19 @@ body {
   text-rendering: optimizeLegibility !important;
 }
 
-/* 2. AIRINESS & BIGGER FONT */
+/* 3. THE TOP MARGIN FIX */
+.page {
+  padding-top: 0rem !important; 
+  margin-top: 0 !important;
+}
+
+/* Kill the hidden browser margin on the "Zeroth Layer" title itself */
+h1.page-title {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 4. AIRINESS & BIGGER FONT */
 article p, 
 article ul, 
 article ol, 
@@ -36,21 +49,22 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3 !important;
 }
 
-/* 3. THE PERFECT PADDING & WIDTH & THE ZERO-PADDING FIX */
+/* 5. THE PERFECT PADDING & WIDTH (Your exact working code) */
 .page .center, 
-header {
+.page > header,
+.page-header {
   max-width: 600px !important; 
   margin: 0 auto !important;
-  padding-top: 0 !important; /* THE SMOKING GUN: Kills the invisible top brick */
   padding-left: 40px !important; 
   padding-right: 40px !important; 
   width: 100% !important;
   box-sizing: border-box !important;
 }
 
-/* 4. HEADER POSITIONING */
-header {
-  margin-top: 1.5rem !important; /* Gives the header a clean, controlled drop from the very top */
+/* 6. HEADER POSITIONING (Your exact working alignment code) */
+.page > header,
+.page-header {
+  margin-top: 1.5rem !important; /* This drops the header a tiny bit from the glass */
   margin-bottom: 0 !important; 
   display: flex !important;
   flex-direction: row !important;
@@ -58,11 +72,7 @@ header {
   align-items: center !important;
 }
 
-h1.page-title {
-  margin-top: 0 !important;
-}
-
-/* 5. LINK STYLING */
+/* 7. LINK STYLING */
 a.internal {
   background-color: transparent !important;
   padding: 0 !important;
@@ -79,9 +89,14 @@ a:hover, a.internal:hover {
   color: #3AA99F !important;
 }
 
-/* 6. SAFE MOBILE SCALING */
+/* 8. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
-  header {
+  .page {
+    padding-top: 0 !important; 
+  }
+  
+  .page > header,
+  .page-header {
     margin-top: 1rem !important;
   }
   
@@ -90,7 +105,8 @@ a:hover, a.internal:hover {
   }
 
   .page .center, 
-  header {
+  .page > header,
+  .page-header {
     padding-left: 14px !important;
     padding-right: 14px !important;
   }
@@ -105,12 +121,12 @@ a:hover, a.internal:hover {
   }
 }
 
-/* 7. MASSIVE SEPARATION GAP & NOTE TITLE */
+/* 9. MASSIVE SEPARATION GAP & NOTE TITLE (Your exact working gap code) */
 .article-title {
   font-size: 2.8rem !important; 
   font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
-  margin-top: 5rem !important; /* The massive gap */
+  margin-top: 5rem !important; 
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
 }
