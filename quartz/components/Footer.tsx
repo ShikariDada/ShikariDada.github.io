@@ -12,20 +12,22 @@ export default ((opts?: Options) => {
     const year = new Date().getFullYear()
     const links = opts?.links ?? []
     return (
-      <footer class={`${displayClass ?? ""}`}>
-        {/* THIS IS YOUR NEW CIRCULAR LOGO */}
+          <footer class={`${displayClass ?? ""}`}>
+            {/* The social links render FIRST */}
+            <ul>
+              {Object.entries(links).map(([text, link]) => (
+                <li>
+                  <a href={link}>{text}</a>
+                </li>
+              ))}
+            </ul>
+
+            {/* Your logo renders SECOND (below the links) */}
             <a href="/About" class="footer-logo">
-              <img src="/static/icon.png" alt="About Zeroth Layer" />
+              <img src="/static/logo.png" alt="About Zeroth Layer" />
             </a>
-        <ul>
-          {Object.entries(links).map(([text, link]) => (
-            <li>
-              <a href={link}>{text}</a>
-            </li>
-          ))}
-        </ul>
-      </footer>
-    )
+          </footer>
+        )
   }
 
   Footer.css = style
