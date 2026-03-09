@@ -51,7 +51,7 @@ body {
 /* Bumps "Zeroth Layer" back up to a clean, readable size */
 h2.page-title {
   font-size: 1.3rem !important; 
-  font-weight: 450 !important;
+  font-weight: 300 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -59,7 +59,7 @@ h2.page-title {
 /* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
 /* By putting the margin directly on the article tag, we guarantee the space cannot collapse */
 article.popover-hint {
-  margin-top: 7rem !important; /* THE MASSIVE GAP BETWEEN THE HEADER AND NOTE TITLE */
+  margin-top: 10rem !important; /* THE MASSIVE GAP BETWEEN THE HEADER AND NOTE TITLE */
 }
 
 h1.article-title {
