@@ -7,9 +7,6 @@ title: Zeroth Layer
 
 
 
-
-
-
 Trying to speak the unspeakable and give form to the formless.
 
 This space is where I explore ideas, patterns, and insights about life and the systems that shape it. My aim is simple: to understand deeply and share what I discover. 
