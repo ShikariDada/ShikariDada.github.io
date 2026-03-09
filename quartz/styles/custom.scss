@@ -270,3 +270,19 @@ ul.clean-list li a {
   min-width: 90px !important; 
   margin-right: 1.5rem !important; 
 }
+
+/* 11. THE UNIFIED GRAY CONTROL */
+/* This groups all secondary text elements together so they are 100% identical */
+
+.about-link,        /* The "About" text in the header */
+.muted-header,      /* "Latest", "Topics", "Writing" */
+.latest-meta,       /* "Mar 08, 2026 · 3 min read" */
+.excerpt,           /* "An idea struck me..." */
+.list-date {        /* "2026 - 03" */
+  color: #a0a0a0 !important; /* This is a very clean, readable, medium-light gray */
+}
+
+/* Optional: If you want the "Keep reading ->" link to match them perfectly too */
+.keep-reading {
+  color: #a0a0a0 !important; 
+}
