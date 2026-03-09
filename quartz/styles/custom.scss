@@ -179,9 +179,9 @@ footer ul {
 
 /* The gray section headers ("Latest", "Topics", "Writing") */
 .muted-header {
-  font-size: 16px !important; /* Bumped up for better readability */
+  font-size: 19px !important; /* Bumped up for better readability */
   color: var(--gray) !important;
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.4rem !important;
   display: block !important;
 }
 
@@ -195,7 +195,7 @@ h3 {
 
 /* Drops the size and completely mutes the date and excerpt */
 .latest-meta {
-  font-size: 16px !important;
+  font-size: 19px !important;
   color: var(--gray) !important;
   display: block !important;
   margin-bottom: 1rem !important; /* Clean space before the excerpt starts */
