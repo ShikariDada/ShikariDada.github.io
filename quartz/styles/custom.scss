@@ -179,9 +179,9 @@ footer ul {
 
 /* The gray section headers ("Latest", "Topics", "Writing") */
 .muted-header {
-  font-size: 19px !important; /* Bumped up for better readability */
+  font-size: 21px !important; /* Bumped up for better readability */
   color: var(--gray) !important;
-  margin-bottom: 1.4rem !important;
+  margin-bottom: 1.3rem !important;
   display: block !important;
 }
 
@@ -203,7 +203,7 @@ h3 {
 
 .excerpt, 
 .keep-reading {
-  font-size: 16px !important; /* Shrunk from 20px so it doesn't fight the title */
+  font-size: 21px !important; /* Shrunk from 20px so it doesn't fight the title */
   color: var(--gray) !important; /* Muted gray */
   line-height: 1.6 !important;
 }
@@ -221,7 +221,7 @@ h3 {
 hr.minimal-divider {
   border: none !important;
   border-top: 1px solid var(--lightgray) !important; 
-  opacity: 0.3 !important; /* Makes the lines incredibly faint and subtle */
+  opacity: 0.4 !important; /* Makes the lines incredibly faint and subtle */
   margin: 3.5rem 0 !important; 
 }
 
