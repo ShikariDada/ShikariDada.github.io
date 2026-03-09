@@ -5,7 +5,7 @@ title: Zeroth Layer
 <span class="muted-header">Latest</span>
 
 ### [An Idea About Birth and Probability](an-idea-about-birth-and-probability)
-<span class="content-meta">Mar 08, 2026 · 3 min read</span>
+<span class="latest-meta">Mar 08, 2026 · 3 min read</span>
 
 <span class="excerpt">An idea struck me, what if we all, animals and even humans are all like those particles which when observed, by anything, become deterministic and collapse to a state...</span> <a href="an-idea-about-birth-and-probability" class="keep-reading">Keep reading →</a>
 
