@@ -58,10 +58,17 @@ h1, h2, h3, h4, h5, h6 {
 .page > header {
   margin-top: 0 !important; 
   margin-bottom: 0 !important; 
+  padding-top: 0.5rem !important; /* Kills Quartz's hidden internal padding. Tweak this tiny number if you want it closer/further from the glass */
   display: flex !important;
   flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
+}
+
+/* Kills the browser's default hidden margin on the "Zeroth Layer" text */
+.page-title {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
 /* 6. LINK STYLING */
