@@ -2,9 +2,6 @@
 title: Zeroth Layer
 ---
 
-<div align="center">
-  <img src="/static/icon.png" width="80" style="border-radius: 15%; margin-bottom: 20px; opacity: 0.9;" alt="Zeroth Layer Logo">
-</div>
 
 Trying to speak the unspeakable and give form to the formless.
 
