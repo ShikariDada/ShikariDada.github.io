@@ -15,9 +15,15 @@ body {
 }
 
 /* 2. THE TOP MARGIN FIX */
-/* Quartz has hidden top padding on the whole page. We reduce it to slide the header up safely. */
+/* We completely kill Quartz's root padding, and strictly apply a 2.5rem drop from the browser roof */
+#quartz-root {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
 .page {
-  padding-top: 1rem !important; 
+  padding-top: 2.5rem !important; /* This is the exact distance the top header will sit from the roof */
+  margin-top: 0 !important;
 }
 
 /* 3. AIRINESS & BIGGER FONT */
@@ -37,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3 !important;
 }
 
-/* 4. THE PERFECT PADDING & WIDTH (Your original working code) */
+/* 4. THE PERFECT PADDING & WIDTH */
 .page .center, 
 .page > header {
   max-width: 600px !important; 
@@ -48,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box !important;
 }
 
-/* 5. HEADER POSITIONING (Your original working code) */
+/* 5. HEADER POSITIONING (Alignment locked in!) */
 .page > header {
   margin-top: 0 !important; 
   margin-bottom: 0 !important; 
@@ -78,11 +84,11 @@ a:hover, a.internal:hover {
 /* 7. SAFE MOBILE SCALING */
 @media all and (max-width: 768px) {
   .page {
-    padding-top: 0.5rem !important; 
+    padding-top: 1.5rem !important; 
   }
   
-  .center-body {
-    padding-top: 1.5rem !important; /* Smaller gap on mobile */
+  .article-title {
+    margin-top: 3rem !important; /* Smaller gap on mobile */
   }
 
   .page .center, 
@@ -102,17 +108,12 @@ a:hover, a.internal:hover {
 }
 
 /* 8. MASSIVE SEPARATION GAP & NOTE TITLE */
-/* Safely pushes the breadcrumbs and title down away from the header */
-.center-body {
-  padding-top: 4.5rem !important; 
-}
-
-/* Steph Ango's clean, large title format */
+/* Instead of padding the container, we force the title itself to violently push downward */
 .article-title {
   font-size: 2.8rem !important; 
   font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
-  margin-top: 0.5rem !important;
+  margin-top: 7rem !important; /* THE MASSIVE GAP BETWEEN HEADER AND TITLE */
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
 }
