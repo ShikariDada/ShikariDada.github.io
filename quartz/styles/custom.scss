@@ -144,21 +144,33 @@ a:hover, a.internal:hover {
 
 /* 9. FOOTER CIRCULAR LOGO & ALIGNMENT */
 footer {
+  max-width: 600px !important; 
+  margin: 6rem auto 4rem auto !important; /* Centers the 600px box and adds top/bottom breathing room */
+  padding: 0 40px !important; /* Exact same bumper padding as your text */
+  box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important; /* Forces the footer to the left wall */
-  margin-top: 6rem !important; /* Gives massive breathing room above the footer */
+  align-items: flex-start !important; /* Forces the content flush to the left wall of the 600px box */
+}
+
+/* Formats your social links into a clean row */
+footer ul {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 1.5rem !important; /* Space between Instagram and Discord */
+  padding: 0 !important;
+  margin: 0 0 2.5rem 0 !important; /* Adds a clean gap BELOW the links, before the logo */
+  list-style: none !important;
 }
 
 .footer-logo img {
-  width: 45px !important; /* Exact size of Steph's doodle */
+  width: 45px !important; 
   height: 45px !important;
-  border-radius: 50% !important; /* Forces it into a perfect circle */
+  border-radius: 50% !important; 
   object-fit: cover !important;
   transition: transform 0.2s ease !important;
-  margin-bottom: 2rem !important; /* Space between the logo and your social links */
 }
 
 .footer-logo img:hover {
-  transform: scale(1.08) !important; /* Tiny pop effect when someone hovers over it */
+  transform: scale(1.08) !important; 
 }
