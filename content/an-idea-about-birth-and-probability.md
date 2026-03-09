@@ -1,3 +1,8 @@
+---
+title: An Idea About Birth and Probability
+---
+
+
 An Idea struck me, what if we all, animals and even humans are all like those particles which when observed, by anything, become deterministic and collapse to a state.
 What i mean is, when we are born, we(our being or identity in the world) are observed by either other people(Same universal consciousness) or by our own consciousness(Same universal consciousness) and at that moment our wave function collapses from all the probabilities to one and that is why the birth time is so important. The rishis somehow established and saw the patterns, the repeated patterns in the cycle of time that decides the life path that will be established at the moment of observation/birth. And that could be what astrology observes and studies. The planets are not mystical forces, but variables in the equation that change and repeat their patterns over time.
 
