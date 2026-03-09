@@ -13,9 +13,8 @@ body {
 }
 
 /* 2. THE READING COLUMN & WIDTH */
-/* Locked at exactly 600px with your perfect 40px bumper padding */
-.page .center, 
-header {
+/* The .center div controls the width for EVERYTHING inside it */
+.page .center {
   max-width: 600px !important; 
   margin: 0 auto !important;
   padding-left: 40px !important; 
@@ -24,35 +23,49 @@ header {
   box-sizing: border-box !important;
 }
 
-/* 3. THE UPPERMOST SECTION (Top alignment and size) */
-.page {
-  padding-top: 0 !important; 
+/* 3. THE UPPERMOST SECTION (Using exact DevTools paths) */
+/* Eradicate hidden spacing on the parent wrappers */
+.page #quartz-body,
+.page .center {
   margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 
-header {
-  padding-top: 2rem !important; /* Uses indestructible padding to set the gap from the top of the browser */
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
+/* Target the exact wrapper Quartz uses to force the top gap */
+.page #quartz-body .page-header {
+  margin-top: 2.5rem !important; /* THE DISTANCE FROM THE TOP OF THE BROWSER */
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+/* Let the header span the full 600px so the spacer can push the title and buttons apart */
+.page-header header {
   display: flex !important;
+  flex-direction: row !important;
   justify-content: space-between !important;
   align-items: center !important;
+  width: 100% !important;
 }
 
-/* Makes "Zeroth Layer" smaller and kills any hidden push-down */
+/* Bumps "Zeroth Layer" back up to a clean, readable size */
 h2.page-title {
-  font-size: 1.1rem !important; /* Dropped the size to look much sleeker */
-  font-weight: 500 !important;
+  font-size: 1.4rem !important; 
+  font-weight: 600 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 /* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
+/* By putting the margin directly on the article tag, we guarantee the space cannot collapse */
+article.popover-hint {
+  margin-top: 6rem !important; /* THE MASSIVE GAP BETWEEN THE HEADER AND NOTE TITLE */
+}
+
 h1.article-title {
   font-size: 2.8rem !important; 
   font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
-  padding-top: 5.5rem !important; /* INDESTRUCTIBLE GAP: Forces 5.5rem of pure blank space above the text */
   margin-top: 0 !important;
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
@@ -93,22 +106,21 @@ a:hover, a.internal:hover {
 
 /* 7. MOBILE SCALING */
 @media all and (max-width: 768px) {
-  .page .center, 
-  header {
+  .page .center {
     padding-left: 14px !important;
     padding-right: 14px !important;
   }
   
-  header {
-    padding-top: 1.5rem !important;
+  .page #quartz-body .page-header {
+    margin-top: 1.5rem !important; /* Tighter to the top on phones */
   }
   
   h2.page-title {
-    font-size: 1rem !important;
+    font-size: 1.2rem !important;
   }
   
-  h1.article-title {
-    padding-top: 3rem !important; 
+  article.popover-hint {
+    margin-top: 3.5rem !important; /* Tighter separation gap on phones */
   }
 
   article p, 
