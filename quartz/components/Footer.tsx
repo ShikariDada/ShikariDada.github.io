@@ -24,7 +24,7 @@ export default ((opts?: Options) => {
 
             {/* Your logo renders SECOND (below the links) */}
             <a href="/About" class="footer-logo">
-              <img src="/static/logo.png" alt="About Zeroth Layer" />
+              <img src="/static/icon.png" alt="About Zeroth Layer" />
             </a>
           </footer>
         )
