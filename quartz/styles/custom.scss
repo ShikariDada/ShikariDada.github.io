@@ -177,9 +177,9 @@ footer ul {
 
 /* 10. STEPH ANGO HOMEPAGE CLONE STYLES */
 
-/* The tiny, gray section headers */
+/* The gray section headers ("Latest", "Topics", "Writing") */
 .muted-header {
-  font-size: 14px !important;
+  font-size: 16px !important; /* Bumped up for better readability */
   color: var(--gray) !important;
   margin-bottom: 1.5rem !important;
   display: block !important;
@@ -193,16 +193,24 @@ h3 {
   font-weight: 600 !important;
 }
 
-.excerpt {
-  font-size: 20px !important;
+/* Drops the size and completely mutes the date and excerpt */
+.latest-meta {
+  font-size: 16px !important;
+  color: var(--gray) !important;
+  display: block !important;
+  margin-bottom: 1rem !important; /* Clean space before the excerpt starts */
+}
+
+.excerpt, 
+.keep-reading {
+  font-size: 16px !important; /* Shrunk from 20px so it doesn't fight the title */
+  color: var(--gray) !important; /* Muted gray */
   line-height: 1.6 !important;
 }
 
 .keep-reading {
-  font-size: 20px !important;
-  color: var(--gray) !important;
   text-decoration: none !important;
-  white-space: nowrap !important; /* Prevents the arrow from breaking to a new line */
+  white-space: nowrap !important;
 }
 
 .keep-reading:hover {
@@ -212,8 +220,9 @@ h3 {
 /* --- THE DIVIDERS --- */
 hr.minimal-divider {
   border: none !important;
-  border-top: 1px solid rgba(150, 150, 150, 0.2) !important; 
-  margin: 3.5rem 0 !important; /* Massive breathing room */
+  border-top: 1px solid var(--lightgray) !important; 
+  opacity: 0.3 !important; /* Makes the lines incredibly faint and subtle */
+  margin: 3.5rem 0 !important; 
 }
 
 /* --- TOPICS SECTION --- */
@@ -222,7 +231,6 @@ hr.minimal-divider {
   line-height: 1.6 !important;
 }
 
-/* Forces tags to be normal weight and underlined like Steph's */
 .topics-list a {
   font-weight: 400 !important;
   color: var(--secondary) !important;
@@ -241,11 +249,10 @@ ul.clean-list {
 ul.clean-list li {
   display: flex !important;
   flex-direction: row !important;
-  align-items: baseline !important; /* Aligns the date perfectly with the text baseline */
+  align-items: baseline !important; 
   margin-bottom: 0.8rem !important;
 }
 
-/* Forces titles in the list to be normal weight and underlined */
 ul.clean-list li a {
   font-weight: 400 !important;
   font-size: 20px !important;
@@ -259,7 +266,7 @@ ul.clean-list li a {
 .list-date {
   color: var(--gray) !important;
   font-family: monospace !important; 
-  font-size: 14.5px !important;
-  min-width: 90px !important; /* INDESTRUCTIBLE COLUMN: Forces every date to take up exactly the same width */
-  margin-right: 1.5rem !important; /* Space between date and title */
+  font-size: 16px !important; /* Bumped up */
+  min-width: 90px !important; 
+  margin-right: 1.5rem !important; 
 }
