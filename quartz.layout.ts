@@ -9,7 +9,7 @@ export const sharedPageComponents: SharedLayout = {
   header: [
     Component.PageTitle(),
     Component.Spacer(),
-    Component.Search(),
+    Component.AboutLink(),
     Component.Darkmode(),
   ],
   afterBody: [],
