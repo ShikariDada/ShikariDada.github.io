@@ -33,7 +33,7 @@ body {
 
 /* Target the exact wrapper Quartz uses to force the top gap */
 .page #quartz-body .page-header {
-  margin-top: 3.7rem !important; /* THE DISTANCE FROM THE TOP OF THE BROWSER */
+  margin-top: 3.8rem !important; /* THE DISTANCE FROM THE TOP OF THE BROWSER */
   margin-bottom: 0 !important;
   padding: 0 !important;
   width: 100% !important;
@@ -51,7 +51,7 @@ body {
 /* Bumps "Zeroth Layer" back up to a clean, readable size */
 h2.page-title {
   font-size: 1.3rem !important; 
-  font-weight: 550 !important;
+  font-weight: 450 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -66,7 +66,7 @@ h1.article-title {
   font-size: 2.8rem !important; 
   font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
-  margin-top: 0 !important;
+  margin-top: 4 !important;
   margin-bottom: 0.5em !important;
   line-height: 1.1 !important;
 }
