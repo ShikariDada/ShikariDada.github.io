@@ -23,7 +23,7 @@ export default ((opts?: Options) => {
             </ul>
 
             {/* Your logo renders SECOND (below the links) */}
-            <a href="/About" class="footer-logo">
+            <a href="/about" class="footer-logo">
               <img src="/static/icon.png" alt="About Zeroth Layer" />
             </a>
           </footer>
