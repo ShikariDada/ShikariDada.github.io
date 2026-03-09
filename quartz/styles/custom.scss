@@ -58,24 +58,24 @@ h2.page-title a {
 }
 
 /* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
-/* We reset this to 0 because the .page-header margin-bottom controls the gap now */
 article.popover-hint {
-  margin-top: 0 !important; 
+  margin-top: 0 !important;
+  padding-top: 6rem !important; /* INDESTRUCTIBLE GAP: This guarantees the massive space above the title */
 }
 
 h1.article-title {
   font-size: 2.8rem !important; 
   font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
-  margin-top: 0 !important; /* Fixed the missing unit error! */
-  margin-bottom: 0 !important; /* Pulled tight to the metadata */
+  margin-top: 0 !important;
+  margin-bottom: 0.2rem !important; /* Pulls the title incredibly tight to the date below it */
   line-height: 1.1 !important;
 }
 
-/* Target the metadata specifically to shrink the gap before the text starts */
+/* Isolates the date text so we can control exactly how much space is under it */
 p.content-meta {
-  margin-top: 0.5rem !important;
-  margin-bottom: 2.5rem !important; /* Controls the exact gap before your first paragraph */
+  margin-top: 0 !important;
+  margin-bottom: 2.5rem !important; /* Tweak this number to control the gap before the reading text begins */
 }
 
 /* 5. ARTICLE TEXT & AIRINESS */
@@ -83,6 +83,7 @@ article p,
 article ul, 
 article ol, 
 article li {
+  margin-top: 0 !important; /* Kills the hidden top-spacing that was pushing paragraphs away from the date */
   font-size: 20px !important; 
   line-height: 1.60 !important; 
   margin-bottom: 1.6em !important;
