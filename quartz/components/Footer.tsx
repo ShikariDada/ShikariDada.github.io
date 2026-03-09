@@ -13,6 +13,10 @@ export default ((opts?: Options) => {
     const links = opts?.links ?? []
     return (
       <footer class={`${displayClass ?? ""}`}>
+        {/* THIS IS YOUR NEW CIRCULAR LOGO */}
+            <a href="/About" class="footer-logo">
+              <img src="/static/icon.png" alt="About Zeroth Layer" />
+            </a>
         <ul>
           {Object.entries(links).map(([text, link]) => (
             <li>
