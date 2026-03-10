@@ -231,17 +231,22 @@ article p:has(.muted-header) {
   display: block !important;
   
   /* Change this to 0.5rem, 0.2rem, or 0 to get the exact tight fit you want! */
-  margin-bottom: 0.5rem !important; 
+  margin-bottom: 1rem !important; 
 }
 
 /* --- LATEST SECTION --- */
-/* The title of the latest post */
+/* Target both the heading AND the link inside it */
 h3, 
 h3 a {
   font-size: 1.6rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0.55rem !important;
-  font-weight: 600 !important; /* 400 is normal text weight. Change to 500 if it's too thin! */
+  
+  /* 1. Lock the weight to the lighter 500 bucket */
+  font-weight: 500 !important; 
+  
+  /* 2. THE MICRO-DIAL: Adds a microscopic outline to fake a 550 weight */
+  -webkit-text-stroke: 0.3px currentColor !important; 
 }
 
 /* The date/read time under the latest post */
