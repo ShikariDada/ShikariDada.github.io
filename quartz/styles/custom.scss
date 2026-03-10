@@ -283,16 +283,3 @@ ul.clean-list li a {
   color: #808080 !important; 
 }
 
-/* 12. THE ABSOLUTE CENTERING FIX */
-/* Completely eradicates the invisible left/right sidebars so they cannot push the text off-center */
-.page .left.sidebar,
-.page .right.sidebar {
-  display: none !important;
-}
-
-/* Forces the main body to act as a pure, single-column container */
-.page #quartz-body {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-}
