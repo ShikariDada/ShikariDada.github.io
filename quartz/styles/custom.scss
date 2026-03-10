@@ -306,5 +306,5 @@ ul.clean-list li a {
 /* 13. HOMEPAGE SPECIFIC SPACING */
 /* The data-slug="index" ensures this ONLY affects the homepage */
 body[data-slug="index"] article.popover-hint {
-  padding-top: 4rem !important; /* Change this number to control the massive gap above "Latest" */
+  padding-top: 2rem !important; /* Change this number to control the massive gap above "Latest" */
 }
