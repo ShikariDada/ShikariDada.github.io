@@ -215,7 +215,7 @@ body[data-slug="index"] article.popover-hint {
 /* The tiny section headers ("Latest", "Topics", "Writing") */
 .muted-header {
   font-size: 21px !important; 
-  margin-bottom: 10rem !important;
+  margin-bottom: 0rem !important;
   display: block !important;
 }
 
@@ -226,7 +226,7 @@ h3 a {
   font-size: 1.6rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0.55rem !important;
-  font-weight: 480 !important; /* 400 is normal text weight. Change to 500 if it's too thin! */
+  font-weight: 500 !important; /* 400 is normal text weight. Change to 500 if it's too thin! */
 }
 
 /* The date/read time under the latest post */
@@ -257,8 +257,8 @@ h3 a {
 hr.minimal-divider {
   border: none !important;
   border-top: 1px solid var(--lightgray) !important; 
-  opacity: 0.6 !important; /* Controls how visible the line is (1.0 is solid, 0.1 is barely there) */
-  margin: 3rem 0 !important; /* The massive breathing room above and below the lines */
+  opacity: 0.7 !important; /* Controls how visible the line is (1.0 is solid, 0.1 is barely there) */
+  margin: 2.5rem 0 !important; /* The massive breathing room above and below the lines */
 }
 
 /* --- TOPICS SECTION --- */
