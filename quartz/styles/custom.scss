@@ -111,11 +111,12 @@ footer {
 /* Steph Ango conversational social links */
 .social-text {
   font-size: 20px !important;
-  color: var(--muted-color) !important;
-  margin-bottom: 2.5rem !important; /* The space before the logo */
+  margin-bottom: 2.5rem !important; 
   line-height: 1.6 !important;
+  /* (The color is now handled by the Unified Gray block!) */
 }
 
+/* Binds the links to the exact same global highlight color */
 .social-text a {
   color: var(--secondary) !important;
   text-decoration: underline !important;
@@ -125,9 +126,8 @@ footer {
 }
 
 /* THE OPTICAL ALIGNMENT FIX */
-/* A negative left margin physically pulls the circle outside the grid to trick the eye */
 .footer-logo {
-  margin-left: -3px !important; /* Adjust to -4px or -5px if it still feels indented */
+  margin-left: -3px !important; 
 }
 
 /* The circular face/logo */
@@ -219,7 +219,8 @@ body[data-slug="index"] article.popover-hint {
 .latest-meta,       
 .excerpt,           
 .list-date,
-.keep-reading {
+.keep-reading,
+.social-text {
   color: var(--muted-color) !important; /* Pulls from Master Control */
 }
 
