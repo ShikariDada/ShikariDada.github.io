@@ -100,7 +100,7 @@ h2.page-title a {
 /* --- FOOTER --- */
 footer {
   max-width: var(--content-width) !important; /* Pulls from Master Control */
-  margin: 6rem auto 4rem auto !important; /* 6rem gap above footer, 4rem gap below */
+  margin: 6rem auto 12rem auto !important; /* 6rem gap above footer, 4rem gap below */
   padding: 0 40px !important; /* Matches the text bumpers */
   box-sizing: border-box !important;
   display: flex !important;
@@ -225,14 +225,14 @@ h3 {
   font-size: 1.6rem !important;
   margin-top: 1rem !important;
   margin-bottom: 0.55rem !important;
-  font-weight: 480 !important;
+  font-weight: 440 !important;
 }
 
 /* The date/read time under the latest post */
 .latest-meta {
   font-size: 19px !important;
   display: block !important;
-  margin-bottom: 1rem !important; /* Space before the summary text starts */
+  margin-bottom: 0rem !important; /* Space before the summary text starts */
 }
 
 /* The summary text and keep reading link */
@@ -256,7 +256,7 @@ h3 {
 hr.minimal-divider {
   border: none !important;
   border-top: 1px solid var(--lightgray) !important; 
-  opacity: 0.55 !important; /* Controls how visible the line is (1.0 is solid, 0.1 is barely there) */
+  opacity: 0.6 !important; /* Controls how visible the line is (1.0 is solid, 0.1 is barely there) */
   margin: 3.5rem 0 !important; /* The massive breathing room above and below the lines */
 }
 
