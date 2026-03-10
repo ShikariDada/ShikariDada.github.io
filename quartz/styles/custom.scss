@@ -327,12 +327,19 @@ ul.clean-list li a {
   text-underline-offset: 4px !important;
 }
 
-/* The fixed-width "YYYY - MM" date text */
+/* The fixed-width "YYYY · MM" date text */
 .list-date {
-  font-family: monospace !important; /* Monospace keeps the dates perfectly vertically aligned */
+  /* 1. Kills the rigid monospace font so spaces and dots can shrink natively */
+  font-family: var(--bodyFont) !important; 
+  
+  /* 2. THE MAGIC TRICK: Forces ONLY the numbers to align in a perfect vertical column */
+  font-variant-numeric: tabular-nums !important; 
+  
+  /* Restores your original font size so it matches the article titles */
   font-size: 20px !important; 
-  min-width: 90px !important; /* INDESTRUCTIBLE COLUMN: Forces every date to take up exactly the same width */
-  margin-right: 1.5rem !important; /* Horizontal space between date and post title */
+  
+  min-width: 90px !important; 
+  margin-right: 1.5rem !important; 
 }
 
 
