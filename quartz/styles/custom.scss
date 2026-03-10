@@ -1,29 +1,36 @@
 @use "./base.scss";
 
-/* 1. NATIVE FONTS & SMOOTHING */
+/* ==========================================
+   1. MASTER CONTROL PANEL (VARIABLES)
+   Change these numbers here to update the entire site instantly!
+   ========================================== */
 :root {
+  /* The absolute maximum width of your text column and footer */
+  --content-width: 840px !important; 
+  
+  /* The universal color for all secondary/muted text (Dates, Topics, About link, etc.) */
+  --muted-color: #808080 !important;
+
+  /* Native System Fonts for a clean, app-like feel */
   --headerFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
   --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
 }
 
+
+/* ==========================================
+   2. GLOBAL BASE & SMOOTHING
+   ========================================== */
 body {
   font-family: var(--bodyFont) !important;
   font-weight: 400 !important; 
-  -webkit-font-smoothing: antialiased !important;
+  -webkit-font-smoothing: antialiased !important; /* Makes text look crisper on Mac/iOS */
 }
 
-/* 2. THE READING COLUMN & WIDTH */
-/* The .center div controls the width for EVERYTHING inside it */
-.page .center {
-  max-width: 840px !important; 
-  margin: 0 auto !important;
-  padding-left: 40px !important; 
-  padding-right: 40px !important; 
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
 
-/* 3. THE UPPERMOST SECTION (Using exact DevTools paths) */
+/* ==========================================
+   3. CORE LAYOUT & CENTERING
+   These rules build the invisible walls that keep your text perfectly centered.
+   ========================================== */
 /* Eradicate hidden spacing on the parent wrappers */
 .page #quartz-body,
 .page .center {
@@ -32,15 +39,46 @@ body {
   padding-top: 0 !important;
 }
 
+/* Hides Quartz's invisible left/right sidebars so they don't push text off-center */
+.page .left.sidebar,
+.page .right.sidebar {
+  display: none !important;
+}
+
+/* Overwrites Quartz's multi-column grid to force a single centered column */
+.page > #quartz-body {
+  grid-template-columns: min(var(--content-width), 100vw) !important; /* Pulls from Master Control */
+  justify-content: center !important; 
+  grid-template-areas: 
+    "grid-header" 
+    "grid-center" 
+    "grid-footer" !important;
+}
+
+/* The main invisible box that physically holds your text */
+.page .center {
+  max-width: var(--content-width) !important; /* Pulls from Master Control */
+  margin: 0 auto !important;
+  padding-left: 40px !important; /* Left bumper space so text doesn't touch the screen edge */
+  padding-right: 40px !important; /* Right bumper space */
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+
+/* ==========================================
+   4. HEADER & FOOTER NAVIGATION
+   ========================================== */
+/* --- HEADER --- */
 /* Target the exact wrapper Quartz uses to force the top gap */
 .page #quartz-body .page-header {
-  margin-top: 3.8rem !important; /* Distance from top of browser */
-  margin-bottom: 0rem !important; /* THE GAP BETWEEN HEADER AND NOTE TITLE */
+  margin-top: 3.8rem !important; /* Distance from top of browser to "Zeroth Layer" */
+  margin-bottom: 0rem !important; 
   padding: 0 !important;
   width: 100% !important;
 }
 
-/* Let the header span the full 600px so the spacer can push the title and buttons apart */
+/* Forces the "Zeroth Layer" text and "About/Moon" to sit on opposite sides */
 .page-header header {
   display: flex !important;
   flex-direction: row !important;
@@ -49,55 +87,95 @@ body {
   width: 100% !important;
 }
 
-/* 100% identical clone of article paragraph text */
+/* The "Zeroth Layer" Site Title text */
 h2.page-title,
 h2.page-title a {
   font-size: 20px !important; 
   font-weight: 400 !important; 
-  line-height: 1.60 !important; /* Matches paragraph airiness */
+  line-height: 1.60 !important; 
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
-article.popover-hint {
-  margin-top: 0 !important;
-  padding-top: 0rem !important; /* INDESTRUCTIBLE GAP: This guarantees the massive space above the title */
+/* --- FOOTER --- */
+footer {
+  max-width: var(--content-width) !important; /* Pulls from Master Control */
+  margin: 6rem auto 4rem auto !important; /* 6rem gap above footer, 4rem gap below */
+  padding: 0 40px !important; /* Matches the text bumpers */
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Forces all footer items to align to the left */
 }
 
+/* Formats your social links (Instagram/Discord) into a horizontal row */
+footer ul {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 1.5rem !important; /* Space between Instagram and Discord */
+  padding: 0 !important;
+  margin: 0 0 2.5rem 0 !important; /* Adds a clean gap BELOW the links, before the logo */
+  list-style: none !important;
+}
+
+/* The circular face/logo */
+.footer-logo img {
+  width: 45px !important; 
+  height: 45px !important;
+  border-radius: 50% !important; /* Forces the image into a perfect circle */
+  object-fit: cover !important;
+  transition: transform 0.2s ease !important;
+}
+
+.footer-logo img:hover {
+  transform: scale(1.08) !important; /* Creates a slight "pop" effect on hover */
+}
+
+
+/* ==========================================
+   5. READING PAGE TYPOGRAPHY (INSIDE NOTES)
+   ========================================== */
+/* Strips hidden spacing above the article text */
+article.popover-hint {
+  margin-top: 0 !important;
+  padding-top: 0rem !important; 
+}
+
+/* The massive H1 Title of your reading notes */
 h1.article-title {
   font-size: 2.8rem !important; 
   font-weight: 500 !important; 
   letter-spacing: -0.01em !important; 
-  margin-top: 4.3rem !important;
+  margin-top: 4.3rem !important; /* The gap between the Header and the Title */
   margin-bottom: 0.2rem !important; /* Pulls the title incredibly tight to the date below it */
   line-height: 1.1 !important;
 }
 
-/* Isolates the date text so we can control exactly how much space is under it */
+/* The Date/Time Read text specifically under note titles */
 p.content-meta {
   margin-top: 0 !important;
-  margin-bottom: 2rem !important; /* Tweak this number to control the gap before the reading text begins */
+  margin-bottom: 2rem !important; /* The gap before the main reading text begins */
 }
 
-/* 5. ARTICLE TEXT & AIRINESS */
+/* Standard body text paragraphs and lists */
 article p, 
 article ul, 
 article ol, 
 article li {
-  margin-top: 0 !important; /* Kills the hidden top-spacing that was pushing paragraphs away from the date */
+  margin-top: 0 !important; 
   font-size: 20px !important; 
   line-height: 1.60 !important; 
-  margin-bottom: 1.6em !important;
+  margin-bottom: 1.6em !important; /* The airy breathing room between paragraphs */
 }
 
+/* All other headings inside articles (H1-H6) */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headerFont) !important;
   font-weight: 600 !important;
   line-height: 1.3 !important;
 }
 
-/* 6. LINK STYLING */
+/* Standard link styling inside reading text */
 a.internal {
   background-color: transparent !important;
   padding: 0 !important;
@@ -111,82 +189,38 @@ a {
 }
 
 a:hover, a.internal:hover {
-  color: #3AA99F !important;
+  color: #3AA99F !important; /* The color links turn when you hover over them */
 }
 
-/* 7. MOBILE SCALING */
-@media all and (max-width: 768px) {
-  .page .center {
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-  }
-  
-  .page #quartz-body .page-header {
-    margin-top: 1.5rem !important; /* Tighter to the top on phones */
-  }
-  
-  h2.page-title,
-  h2.page-title a {
-    font-size: 16.5px !important; /* Standardized exactly with mobile article p */
-  }
-  
-  article.popover-hint {
-    margin-top: 3.5rem !important; /* Tighter separation gap on phones */
-  }
 
-  article p, 
-  article ul, 
-  article ol, 
-  article li {
-    font-size: 16.5px !important;
-    line-height: 1.6 !important;
-  }
+/* ==========================================
+   6. HOMEPAGE SPECIFIC STYLES (STEPH ANGO CLONE)
+   ========================================== */
+/* Ensures this padding ONLY applies to the index homepage */
+body[data-slug="index"] article.popover-hint {
+  padding-top: 1.8rem !important; /* Controls the massive gap above "Latest" */
 }
 
-/* 9. FOOTER CIRCULAR LOGO & ALIGNMENT */
-footer {
-  max-width: 840px !important; 
-  margin: 6rem auto 4rem auto !important; /* Centers the 600px box and adds top/bottom breathing room */
-  padding: 0 40px !important; /* Exact same bumper padding as your text */
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important; /* Forces the content flush to the left wall of the 600px box */
+/* THE UNIFIED GRAY CONTROL
+   Forcefully groups all secondary elements to use your custom gray variable */
+.about-link,        
+.muted-header,      
+.latest-meta,       
+.excerpt,           
+.list-date,
+.keep-reading {
+  color: var(--muted-color) !important; /* Pulls from Master Control */
 }
 
-/* Formats your social links into a clean row */
-footer ul {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 1.5rem !important; /* Space between Instagram and Discord */
-  padding: 0 !important;
-  margin: 0 0 2.5rem 0 !important; /* Adds a clean gap BELOW the links, before the logo */
-  list-style: none !important;
-}
-
-.footer-logo img {
-  width: 45px !important; 
-  height: 45px !important;
-  border-radius: 50% !important; 
-  object-fit: cover !important;
-  transition: transform 0.2s ease !important;
-}
-
-.footer-logo img:hover {
-  transform: scale(1.08) !important; 
-}
-
-/* 10. STEPH ANGO HOMEPAGE CLONE STYLES */
-
-/* The gray section headers ("Latest", "Topics", "Writing") */
+/* The tiny section headers ("Latest", "Topics", "Writing") */
 .muted-header {
-  font-size: 21px !important; /* Bumped up for better readability */
-  color: var(--gray) !important;
+  font-size: 21px !important; 
   margin-bottom: 1.3rem !important;
   display: block !important;
 }
 
 /* --- LATEST SECTION --- */
+/* The title of the latest post */
 h3 {
   font-size: 1.6rem !important;
   margin-top: 1rem !important;
@@ -194,24 +228,23 @@ h3 {
   font-weight: 480 !important;
 }
 
-/* Drops the size and completely mutes the date and excerpt */
+/* The date/read time under the latest post */
 .latest-meta {
   font-size: 19px !important;
-  color: var(--gray) !important;
   display: block !important;
-  margin-bottom: 1rem !important; /* Clean space before the excerpt starts */
+  margin-bottom: 1rem !important; /* Space before the summary text starts */
 }
 
+/* The summary text and keep reading link */
 .excerpt, 
 .keep-reading {
-  font-size: 19px !important; /* Shrunk from 20px so it doesn't fight the title */
-  color: var(--gray) !important; /* Muted gray */
+  font-size: 19px !important; 
   line-height: 1.6 !important;
 }
 
 .keep-reading {
   text-decoration: none !important;
-  white-space: nowrap !important;
+  white-space: nowrap !important; /* Prevents the arrow from breaking to a new line */
 }
 
 .keep-reading:hover {
@@ -219,11 +252,12 @@ h3 {
 }
 
 /* --- THE DIVIDERS --- */
+/* The faint lines separating sections */
 hr.minimal-divider {
   border: none !important;
   border-top: 1px solid var(--lightgray) !important; 
-  opacity: 0.55 !important; /* Makes the lines incredibly faint and subtle */
-  margin: 3.5rem 0 !important; 
+  opacity: 0.55 !important; /* Controls how visible the line is (1.0 is solid, 0.1 is barely there) */
+  margin: 3.5rem 0 !important; /* The massive breathing room above and below the lines */
 }
 
 /* --- TOPICS SECTION --- */
@@ -232,28 +266,32 @@ hr.minimal-divider {
   line-height: 1.6 !important;
 }
 
+/* Topics links styling (forces the underline look) */
 .topics-list a {
   font-weight: 400 !important;
   color: var(--secondary) !important;
   text-decoration: underline !important;
-  text-decoration-thickness: 1px !important;
-  text-underline-offset: 4px !important;
+  text-decoration-thickness: 1px !important; /* Thickness of the underline */
+  text-underline-offset: 4px !important; /* Distance of underline from the word */
 }
 
 /* --- WRITING LIST SECTION --- */
+/* Resets the default bullet points */
 ul.clean-list {
   list-style: none !important;
   padding: 0 !important;
   margin: 0 !important;
 }
 
+/* Aligns the date and the title on the same row */
 ul.clean-list li {
   display: flex !important;
   flex-direction: row !important;
   align-items: baseline !important; 
-  margin-bottom: 0.8rem !important;
+  margin-bottom: 0.8rem !important; /* Space between each post in the list */
 }
 
+/* Writing archive link styling (underlined) */
 ul.clean-list li a {
   font-weight: 400 !important;
   font-size: 20px !important;
@@ -263,48 +301,368 @@ ul.clean-list li a {
   text-underline-offset: 4px !important;
 }
 
-/* The fixed-width, muted date text */
+/* The fixed-width "YYYY - MM" date text */
 .list-date {
-  color: var(--gray) !important;
-  font-family: monospace !important; 
-  font-size: 20px !important; /* Bumped up */
-  min-width: 90px !important; 
-  margin-right: 1.5rem !important; 
+  font-family: monospace !important; /* Monospace keeps the dates perfectly vertically aligned */
+  font-size: 20px !important; 
+  min-width: 90px !important; /* INDESTRUCTIBLE COLUMN: Forces every date to take up exactly the same width */
+  margin-right: 1.5rem !important; /* Horizontal space between date and post title */
 }
 
-/* 11. THE UNIFIED GRAY CONTROL */
-/* This groups all secondary text elements together so they are 100% identical */
 
-.about-link,        /* The "About" text in the header */
-.muted-header,      /* "Latest", "Topics", "Writing" */
-.latest-meta,       /* "Mar 08, 2026 · 3 min read" */
-.excerpt,           /* "An idea struck me..." */
-.list-date,
-.keep-reading {
-  color: #808080 !important; 
+/* ==========================================
+   7. MOBILE RESPONSIVENESS
+   These rules ONLY apply when the screen is smaller than 768px (phones).
+   ========================================== */
+@media all and (max-width: 768px) {
+  .page .center {
+    padding-left: 14px !important; /* Shrinks the bumper padding so text fits on small screens */
+    padding-right: 14px !important;
+  }
+  
+  .page #quartz-body .page-header {
+    margin-top: 1.5rem !important; /* Pulls the header tighter to the top of the phone */
+  }
+  
+  /* Scales down the "Zeroth Layer" title */
+  h2.page-title,
+  h2.page-title a {
+    font-size: 16.5px !important; 
+  }
+  
+  /* Tighter separation gap above notes on phones */
+  article.popover-hint {
+    margin-top: 3.5rem !important; 
+  }
+
+  /* Scales down the main reading text so it isn't massive on a phone */
+  article p, 
+  article ul, 
+  article ol, 
+  article li {
+    font-size: 16.5px !important;
+    line-height: 1.6 !important;
+  }
 }
 
-/* 12. THE ABSOLUTE CENTERING FIX (GRID OVERRIDE) */
-/* 1. Hides the sidebar HTML elements completely */
-.page .left.sidebar,
-.page .right.sidebar {
-  display: none !important;
-}
 
-/* 2. Overwrites Quartz's multi-column grid blueprint */
-.page > #quartz-body {
-  /* Builds a strict 600px wall that naturally shrinks on mobile */
-  grid-template-columns: min(840px, 100vw) !important; 
-  /* Physically centers that 600px column in the middle of the screen */
-  justify-content: center !important; 
-  grid-template-areas: 
-    "grid-header" 
-    "grid-center" 
-    "grid-footer" !important;
-}
 
-/* 13. HOMEPAGE SPECIFIC SPACING */
-/* The data-slug="index" ensures this ONLY affects the homepage */
-body[data-slug="index"] article.popover-hint {
-  padding-top: 1.8rem !important; /* Change this number to control the massive gap above "Latest" */
-}
+
+
+
+
+
+
+
+
+
+// @use "./base.scss";
+
+// /* 1. NATIVE FONTS & SMOOTHING */
+// :root {
+//   --headerFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+//   --bodyFont: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+// }
+
+// body {
+//   font-family: var(--bodyFont) !important;
+//   font-weight: 400 !important; 
+//   -webkit-font-smoothing: antialiased !important;
+// }
+
+// /* 2. THE READING COLUMN & WIDTH */
+// /* The .center div controls the width for EVERYTHING inside it */
+// .page .center {
+//   max-width: 840px !important; 
+//   margin: 0 auto !important;
+//   padding-left: 40px !important; 
+//   padding-right: 40px !important; 
+//   width: 100% !important;
+//   box-sizing: border-box !important;
+// }
+
+// /* 3. THE UPPERMOST SECTION (Using exact DevTools paths) */
+// /* Eradicate hidden spacing on the parent wrappers */
+// .page #quartz-body,
+// .page .center {
+//   margin-top: 0 !important;
+//   margin-bottom: 0rem !important;
+//   padding-top: 0 !important;
+// }
+
+// /* Target the exact wrapper Quartz uses to force the top gap */
+// .page #quartz-body .page-header {
+//   margin-top: 3.8rem !important; /* Distance from top of browser */
+//   margin-bottom: 0rem !important; /* THE GAP BETWEEN HEADER AND NOTE TITLE */
+//   padding: 0 !important;
+//   width: 100% !important;
+// }
+
+// /* Let the header span the full 600px so the spacer can push the title and buttons apart */
+// .page-header header {
+//   display: flex !important;
+//   flex-direction: row !important;
+//   justify-content: space-between !important;
+//   align-items: center !important;
+//   width: 100% !important;
+// }
+
+// /* 100% identical clone of article paragraph text */
+// h2.page-title,
+// h2.page-title a {
+//   font-size: 20px !important; 
+//   font-weight: 400 !important; 
+//   line-height: 1.60 !important; /* Matches paragraph airiness */
+//   margin: 0 !important;
+//   padding: 0 !important;
+// }
+
+// /* 4. THE NOTE TITLE & MASSIVE SEPARATION GAP */
+// article.popover-hint {
+//   margin-top: 0 !important;
+//   padding-top: 0rem !important; /* INDESTRUCTIBLE GAP: This guarantees the massive space above the title */
+// }
+
+// h1.article-title {
+//   font-size: 2.8rem !important; 
+//   font-weight: 500 !important; 
+//   letter-spacing: -0.01em !important; 
+//   margin-top: 4.3rem !important;
+//   margin-bottom: 0.2rem !important; /* Pulls the title incredibly tight to the date below it */
+//   line-height: 1.1 !important;
+// }
+
+// /* Isolates the date text so we can control exactly how much space is under it */
+// p.content-meta {
+//   margin-top: 0 !important;
+//   margin-bottom: 2rem !important; /* Tweak this number to control the gap before the reading text begins */
+// }
+
+// /* 5. ARTICLE TEXT & AIRINESS */
+// article p, 
+// article ul, 
+// article ol, 
+// article li {
+//   margin-top: 0 !important; /* Kills the hidden top-spacing that was pushing paragraphs away from the date */
+//   font-size: 20px !important; 
+//   line-height: 1.60 !important; 
+//   margin-bottom: 1.6em !important;
+// }
+
+// h1, h2, h3, h4, h5, h6 {
+//   font-family: var(--headerFont) !important;
+//   font-weight: 600 !important;
+//   line-height: 1.3 !important;
+// }
+
+// /* 6. LINK STYLING */
+// a.internal {
+//   background-color: transparent !important;
+//   padding: 0 !important;
+//   border-radius: 0 !important;
+//   text-decoration: none !important;
+// }
+
+// a {
+//   color: var(--secondary) !important;
+//   transition: color 0.2s ease !important;
+// }
+
+// a:hover, a.internal:hover {
+//   color: #3AA99F !important;
+// }
+
+// /* 7. MOBILE SCALING */
+// @media all and (max-width: 768px) {
+//   .page .center {
+//     padding-left: 14px !important;
+//     padding-right: 14px !important;
+//   }
+  
+//   .page #quartz-body .page-header {
+//     margin-top: 1.5rem !important; /* Tighter to the top on phones */
+//   }
+  
+//   h2.page-title,
+//   h2.page-title a {
+//     font-size: 16.5px !important; /* Standardized exactly with mobile article p */
+//   }
+  
+//   article.popover-hint {
+//     margin-top: 3.5rem !important; /* Tighter separation gap on phones */
+//   }
+
+//   article p, 
+//   article ul, 
+//   article ol, 
+//   article li {
+//     font-size: 16.5px !important;
+//     line-height: 1.6 !important;
+//   }
+// }
+
+// /* 9. FOOTER CIRCULAR LOGO & ALIGNMENT */
+// footer {
+//   max-width: 840px !important; 
+//   margin: 6rem auto 4rem auto !important; /* Centers the 600px box and adds top/bottom breathing room */
+//   padding: 0 40px !important; /* Exact same bumper padding as your text */
+//   box-sizing: border-box !important;
+//   display: flex !important;
+//   flex-direction: column !important;
+//   align-items: flex-start !important; /* Forces the content flush to the left wall of the 600px box */
+// }
+
+// /* Formats your social links into a clean row */
+// footer ul {
+//   display: flex !important;
+//   flex-direction: row !important;
+//   gap: 1.5rem !important; /* Space between Instagram and Discord */
+//   padding: 0 !important;
+//   margin: 0 0 2.5rem 0 !important; /* Adds a clean gap BELOW the links, before the logo */
+//   list-style: none !important;
+// }
+
+// .footer-logo img {
+//   width: 45px !important; 
+//   height: 45px !important;
+//   border-radius: 50% !important; 
+//   object-fit: cover !important;
+//   transition: transform 0.2s ease !important;
+// }
+
+// .footer-logo img:hover {
+//   transform: scale(1.08) !important; 
+// }
+
+// /* 10. STEPH ANGO HOMEPAGE CLONE STYLES */
+
+// /* The gray section headers ("Latest", "Topics", "Writing") */
+// .muted-header {
+//   font-size: 21px !important; /* Bumped up for better readability */
+//   color: var(--gray) !important;
+//   margin-bottom: 1.3rem !important;
+//   display: block !important;
+// }
+
+// /* --- LATEST SECTION --- */
+// h3 {
+//   font-size: 1.6rem !important;
+//   margin-top: 1rem !important;
+//   margin-bottom: 0.55rem !important;
+//   font-weight: 480 !important;
+// }
+
+// /* Drops the size and completely mutes the date and excerpt */
+// .latest-meta {
+//   font-size: 19px !important;
+//   color: var(--gray) !important;
+//   display: block !important;
+//   margin-bottom: 1rem !important; /* Clean space before the excerpt starts */
+// }
+
+// .excerpt, 
+// .keep-reading {
+//   font-size: 19px !important; /* Shrunk from 20px so it doesn't fight the title */
+//   color: var(--gray) !important; /* Muted gray */
+//   line-height: 1.6 !important;
+// }
+
+// .keep-reading {
+//   text-decoration: none !important;
+//   white-space: nowrap !important;
+// }
+
+// .keep-reading:hover {
+//   color: var(--secondary) !important;
+// }
+
+// /* --- THE DIVIDERS --- */
+// hr.minimal-divider {
+//   border: none !important;
+//   border-top: 1px solid var(--lightgray) !important; 
+//   opacity: 0.55 !important; /* Makes the lines incredibly faint and subtle */
+//   margin: 3.5rem 0 !important; 
+// }
+
+// /* --- TOPICS SECTION --- */
+// .topics-list {
+//   font-size: 20px !important;
+//   line-height: 1.6 !important;
+// }
+
+// .topics-list a {
+//   font-weight: 400 !important;
+//   color: var(--secondary) !important;
+//   text-decoration: underline !important;
+//   text-decoration-thickness: 1px !important;
+//   text-underline-offset: 4px !important;
+// }
+
+// /* --- WRITING LIST SECTION --- */
+// ul.clean-list {
+//   list-style: none !important;
+//   padding: 0 !important;
+//   margin: 0 !important;
+// }
+
+// ul.clean-list li {
+//   display: flex !important;
+//   flex-direction: row !important;
+//   align-items: baseline !important; 
+//   margin-bottom: 0.8rem !important;
+// }
+
+// ul.clean-list li a {
+//   font-weight: 400 !important;
+//   font-size: 20px !important;
+//   color: var(--secondary) !important;
+//   text-decoration: underline !important;
+//   text-decoration-thickness: 1px !important;
+//   text-underline-offset: 4px !important;
+// }
+
+// /* The fixed-width, muted date text */
+// .list-date {
+//   color: var(--gray) !important;
+//   font-family: monospace !important; 
+//   font-size: 20px !important; /* Bumped up */
+//   min-width: 90px !important; 
+//   margin-right: 1.5rem !important; 
+// }
+
+// /* 11. THE UNIFIED GRAY CONTROL */
+// /* This groups all secondary text elements together so they are 100% identical */
+
+// .about-link,        /* The "About" text in the header */
+// .muted-header,      /* "Latest", "Topics", "Writing" */
+// .latest-meta,       /* "Mar 08, 2026 · 3 min read" */
+// .excerpt,           /* "An idea struck me..." */
+// .list-date,
+// .keep-reading {
+//   color: #808080 !important; 
+// }
+
+// /* 12. THE ABSOLUTE CENTERING FIX (GRID OVERRIDE) */
+// /* 1. Hides the sidebar HTML elements completely */
+// .page .left.sidebar,
+// .page .right.sidebar {
+//   display: none !important;
+// }
+
+// /* 2. Overwrites Quartz's multi-column grid blueprint */
+// .page > #quartz-body {
+//   /* Builds a strict 600px wall that naturally shrinks on mobile */
+//   grid-template-columns: min(840px, 100vw) !important; 
+//   /* Physically centers that 600px column in the middle of the screen */
+//   justify-content: center !important; 
+//   grid-template-areas: 
+//     "grid-header" 
+//     "grid-center" 
+//     "grid-footer" !important;
+// }
+
+// /* 13. HOMEPAGE SPECIFIC SPACING */
+// /* The data-slug="index" ensures this ONLY affects the homepage */
+// body[data-slug="index"] article.popover-hint {
+//   padding-top: 1.8rem !important; /* Change this number to control the massive gap above "Latest" */
+// }
