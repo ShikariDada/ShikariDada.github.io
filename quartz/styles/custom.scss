@@ -219,6 +219,21 @@ body[data-slug="index"] article.popover-hint {
   display: block !important;
 }
 
+/* 1. Kills the massive 1.6em gap from the hidden <p> tag wrapper */
+article p:has(.muted-header) {
+  margin-bottom: 0 !important;
+}
+
+/* 2. Now THIS dial will actually work to control the gap to the content below */
+.muted-header {
+  font-size: 21px !important; 
+  color: var(--muted-color) !important;
+  display: block !important;
+  
+  /* Change this to 0.5rem, 0.2rem, or 0 to get the exact tight fit you want! */
+  margin-bottom: 0.5rem !important; 
+}
+
 /* --- LATEST SECTION --- */
 /* The title of the latest post */
 h3, 
