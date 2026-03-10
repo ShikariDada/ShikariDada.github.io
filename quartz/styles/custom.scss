@@ -231,7 +231,7 @@ article p:has(.muted-header) {
   display: block !important;
   
   /* Change this to 0.5rem, 0.2rem, or 0 to get the exact tight fit you want! */
-  margin-bottom: 2rem !important; 
+  margin-bottom: 1.5rem !important; 
 }
 
 /* --- LATEST SECTION --- */
@@ -247,6 +247,11 @@ h3 a {
   
   /* 2. THE MICRO-DIAL: Adds a microscopic outline to fake a 550 weight */
   -webkit-text-stroke: 0.3px currentColor !important; 
+}
+
+/* 1. Neutralizes the hidden <p> tag that Quartz wraps around the date */
+article p:has(.latest-meta) {
+  margin-bottom: 0 !important;
 }
 
 /* The date/read time under the latest post */
