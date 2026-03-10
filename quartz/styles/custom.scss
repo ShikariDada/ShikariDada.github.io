@@ -15,7 +15,7 @@ body {
 /* 2. THE READING COLUMN & WIDTH */
 /* The .center div controls the width for EVERYTHING inside it */
 .page .center {
-  max-width: 820px !important; 
+  max-width: 840px !important; 
   margin: 0 auto !important;
   padding-left: 40px !important; 
   padding-right: 40px !important; 
@@ -144,7 +144,7 @@ a:hover, a.internal:hover {
 
 /* 9. FOOTER CIRCULAR LOGO & ALIGNMENT */
 footer {
-  max-width: 820px !important; 
+  max-width: 840px !important; 
   margin: 6rem auto 4rem auto !important; /* Centers the 600px box and adds top/bottom breathing room */
   padding: 0 40px !important; /* Exact same bumper padding as your text */
   box-sizing: border-box !important;
@@ -293,7 +293,7 @@ ul.clean-list li a {
 /* 2. Overwrites Quartz's multi-column grid blueprint */
 .page > #quartz-body {
   /* Builds a strict 600px wall that naturally shrinks on mobile */
-  grid-template-columns: min(820px, 100vw) !important; 
+  grid-template-columns: min(840px, 100vw) !important; 
   /* Physically centers that 600px column in the middle of the screen */
   justify-content: center !important; 
   grid-template-areas: 
