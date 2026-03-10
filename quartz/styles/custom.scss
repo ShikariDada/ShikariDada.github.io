@@ -28,14 +28,14 @@ body {
 .page #quartz-body,
 .page .center {
   margin-top: 0 !important;
-  margin-bottom: 2rem !important;
+  margin-bottom: 0rem !important;
   padding-top: 0 !important;
 }
 
 /* Target the exact wrapper Quartz uses to force the top gap */
 .page #quartz-body .page-header {
   margin-top: 3.8rem !important; /* Distance from top of browser */
-  margin-bottom: 2rem !important; /* THE GAP BETWEEN HEADER AND NOTE TITLE */
+  margin-bottom: 0rem !important; /* THE GAP BETWEEN HEADER AND NOTE TITLE */
   padding: 0 !important;
   width: 100% !important;
 }
@@ -301,4 +301,10 @@ ul.clean-list li a {
     "grid-header" 
     "grid-center" 
     "grid-footer" !important;
+}
+
+/* 13. HOMEPAGE SPECIFIC SPACING */
+/* The data-slug="index" ensures this ONLY affects the homepage */
+body[data-slug="index"] article.popover-hint {
+  padding-top: 4rem !important; /* Change this number to control the massive gap above "Latest" */
 }
