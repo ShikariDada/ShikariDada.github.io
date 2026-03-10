@@ -240,7 +240,7 @@ h3,
 h3 a {
   font-size: 1.6rem !important;
   margin-top: 1rem !important;
-  margin-bottom: 0.55rem !important;
+  margin-bottom: 0.6rem !important;
   
   /* 1. Lock the weight to the lighter 500 bucket */
   font-weight: 500 !important; 
@@ -258,7 +258,7 @@ article p:has(.latest-meta) {
 .latest-meta {
   font-size: 17.5px !important;
   display: block !important;
-  margin-bottom: 0rem !important; /* Space before the summary text starts */
+  margin-bottom: 0.6rem !important; /* Space before the summary text starts */
 }
 
 /* The summary text and keep reading link */
