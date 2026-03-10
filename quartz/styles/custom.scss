@@ -291,9 +291,11 @@ ul.clean-list li a {
 }
 
 /* 2. Overwrites Quartz's multi-column grid blueprint */
-/* This forces the page to have exactly one column that takes up the full width */
 .page > #quartz-body {
-  grid-template-columns: 1fr !important; 
+  /* Builds a strict 600px wall that naturally shrinks on mobile */
+  grid-template-columns: min(600px, 100vw) !important; 
+  /* Physically centers that 600px column in the middle of the screen */
+  justify-content: center !important; 
   grid-template-areas: 
     "grid-header" 
     "grid-center" 
