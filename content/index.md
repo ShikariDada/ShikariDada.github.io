@@ -22,7 +22,7 @@ title: Zeroth Layer
 <span class="muted-header">Writing</span>
 
 <ul class="clean-list">
-  <li><span class="list-date">2026 - 03</span> <a href="an-idea-about-birth-and-probability">An Idea About Birth and Probability</a></li>
-  <li><span class="list-date">2026 - 02</span> <a href="another-post">Your Second Post Title Here</a></li>
-  <li><span class="list-date">2026 - 01</span> <a href="third-post">Your Third Post Title Here</a></li>
+  <li><span class="list-date">2026 · 03</span> <a href="an-idea-about-birth-and-probability">An Idea About Birth and Probability</a></li>
+  <li><span class="list-date">2026 · 02</span> <a href="another-post">Your Second Post Title Here</a></li>
+  <li><span class="list-date">2026 · 01</span> <a href="third-post">Your Third Post Title Here</a></li>
 </ul>
