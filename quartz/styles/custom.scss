@@ -283,3 +283,19 @@ ul.clean-list li a {
   color: #808080 !important; 
 }
 
+/* 12. THE ABSOLUTE CENTERING FIX (GRID OVERRIDE) */
+/* 1. Hides the sidebar HTML elements completely */
+.page .left.sidebar,
+.page .right.sidebar {
+  display: none !important;
+}
+
+/* 2. Overwrites Quartz's multi-column grid blueprint */
+/* This forces the page to have exactly one column that takes up the full width */
+.page > #quartz-body {
+  grid-template-columns: 1fr !important; 
+  grid-template-areas: 
+    "grid-header" 
+    "grid-center" 
+    "grid-footer" !important;
+}
