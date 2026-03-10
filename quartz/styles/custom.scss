@@ -99,38 +99,49 @@ h2.page-title a {
 
 /* --- FOOTER --- */
 footer {
-  max-width: var(--content-width) !important; /* Pulls from Master Control */
-  margin: 6rem auto 12rem auto !important; /* 6rem gap above footer, 4rem gap below */
-  padding: 0 40px !important; /* Matches the text bumpers */
+  max-width: var(--content-width) !important; 
+  margin: 6rem auto 4rem auto !important; 
+  padding: 0 40px !important; 
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start !important; /* Forces all footer items to align to the left */
+  align-items: flex-start !important; 
 }
 
-/* Formats your social links (Instagram/Discord) into a horizontal row */
-footer ul {
-  display: flex !important;
-  flex-direction: row !important;
-  gap: 1.5rem !important; /* Space between Instagram and Discord */
-  padding: 0 !important;
-  margin: 0 0 2.5rem 0 !important; /* Adds a clean gap BELOW the links, before the logo */
-  list-style: none !important;
+/* Steph Ango conversational social links */
+.social-text {
+  font-size: 20px !important;
+  color: var(--muted-color) !important;
+  margin-bottom: 2.5rem !important; /* The space before the logo */
+  line-height: 1.6 !important;
+}
+
+.social-text a {
+  color: var(--secondary) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 4px !important;
+  font-weight: 400 !important;
+}
+
+/* THE OPTICAL ALIGNMENT FIX */
+/* A negative left margin physically pulls the circle outside the grid to trick the eye */
+.footer-logo {
+  margin-left: -3px !important; /* Adjust to -4px or -5px if it still feels indented */
 }
 
 /* The circular face/logo */
 .footer-logo img {
   width: 45px !important; 
   height: 45px !important;
-  border-radius: 50% !important; /* Forces the image into a perfect circle */
+  border-radius: 50% !important; 
   object-fit: cover !important;
   transition: transform 0.2s ease !important;
 }
 
 .footer-logo img:hover {
-  transform: scale(1.08) !important; /* Creates a slight "pop" effect on hover */
+  transform: scale(1.08) !important; 
 }
-
 
 /* ==========================================
    5. READING PAGE TYPOGRAPHY (INSIDE NOTES)
