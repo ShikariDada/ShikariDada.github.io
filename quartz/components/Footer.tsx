@@ -15,7 +15,7 @@ export default ((opts?: Options) => {
       <footer class={`${displayClass ?? ""}`}>
         {/* Steph Ango conversational text style */}
         <div class="social-text">
-          Follow me on <a href="YOUR_INSTAGRAM_LINK_HERE">Instagram</a>, and join the <a href="YOUR_DISCORD_LINK_HERE">Discord Community</a>.
+          Follow me on <a href="https://www.instagram.com/zerothlayer?igsh=OGF2ZnowdG1hbWhq">Instagram</a>, and join the <a href="https://discord.gg/Uzs63XGuS">Discord Community</a>.
         </div>
 
         {/* The optical alignment target */}
