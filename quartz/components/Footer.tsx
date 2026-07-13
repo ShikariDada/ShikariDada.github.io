@@ -19,8 +19,8 @@ export default ((opts?: Options) => {
         </div>
 
         {/* The optical alignment target */}
-        <a href="/about" class="footer-logo">
-          <img src="/static/icon.png" alt="About Zeroth Layer" />
+        <a href="/blog/about" class="footer-logo">
+          <img src="/blog/static/icon.png" alt="About Zeroth Layer" />
         </a>
       </footer>
     )
