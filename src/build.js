@@ -94,6 +94,14 @@ function baseTemplate({ title, description, content, slug = "" }) {
   return `<!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      // MUST be first — prevents flash of wrong theme on every page load
+      (function() {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('theme-dark');
+        }
+      })();
+    </script>
     <meta charset="UTF-8">
     <title>${pageTitle}</title>
 
@@ -114,12 +122,6 @@ function baseTemplate({ title, description, content, slug = "" }) {
   </head>
 
   <body>
-    <script>
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.querySelector('body').classList.add('theme-dark')
-      }
-    </script>
-
     <nav class="flex align-center">
       <span class="flex-grow">
         <a class="plain" href="/">${SITE.title}</a>
@@ -427,6 +429,52 @@ function build() {
   // ── Generate .nojekyll ──
   fs.writeFileSync(path.join(OUTPUT_DIR, ".nojekyll"), "");
   console.log("  ✓ .nojekyll");
+
+  // ── Generate 404 page (redirects /blog/... old Quartz links gracefully) ──
+  const notFoundHtml = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      (function() {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('theme-dark');
+        }
+        // Redirect old /blog/... Quartz URLs to clean root URLs
+        var path = window.location.pathname;
+        if (path.startsWith('/blog/')) {
+          var newPath = path.replace('/blog', '') || '/';
+          window.location.replace(newPath);
+        }
+      })();
+    </script>
+    <meta charset="UTF-8">
+    <title>Page not found — ${SITE.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/icon.png" type="image/png">
+  </head>
+  <body>
+    <nav class="flex align-center">
+      <span class="flex-grow"><a class="plain" href="/">${SITE.title}</a></span>
+      <span class="flex-shrink nav-links"><a href="/about" class="muted plain">About</a></span>
+      <span id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode" role="switch">
+        <div class="theme-toggle-slide"></div>
+        <div class="theme-toggle-switch"></div>
+      </span>
+    </nav>
+    <main>
+      <div class="wrap">
+        <heading><h1>404</h1></heading>
+        <article>
+          <p class="muted">This page does not exist. <a href="/">Go home →</a></p>
+        </article>
+      </div>
+    </main>
+    <script src="/theme.js"></script>
+  </body>
+</html>`;
+  fs.writeFileSync(path.join(OUTPUT_DIR, "404.html"), notFoundHtml);
+  console.log("  ✓ 404.html");
 
   // ── Copy Static Assets ──
   const statics = fs.readdirSync(STATIC_DIR);

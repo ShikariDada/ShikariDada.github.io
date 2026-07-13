@@ -1,13 +1,15 @@
 /**
  * Dark mode toggle — matches stephango.com behavior
- * Uses localStorage + prefers-color-scheme fallback
+ * Targets documentElement (html) to avoid flash of wrong theme
  */
 (function () {
-  const toggle = document.getElementById("theme-toggle");
+  var toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
 
   toggle.addEventListener("click", function () {
-    const isDark = document.body.classList.toggle("theme-dark");
-    localStorage.theme = isDark ? "dark" : "light";
+    var isDark = document.documentElement.classList.toggle("theme-dark");
+    try {
+      localStorage.theme = isDark ? "dark" : "light";
+    } catch (e) {}
   });
 })();
