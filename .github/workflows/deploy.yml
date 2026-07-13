@@ -28,10 +28,16 @@ jobs:
       - name: Build Quartz
         run: npx quartz build
 
+      - name: Prepare Deployment Directory
+        run: |
+          mkdir -p deploy/blog
+          mv public/* deploy/blog/
+          cp index.html deploy/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./deploy
 
   deploy:
     environment:

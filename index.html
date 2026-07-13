@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeroth Layer</title>
+    <!-- Basic minimal styles to ensure readability before we get the exact design directives -->
+    <style>
+        :root {
+            --content-width: 840px;
+            --muted-color: #808080;
+            --bg-color: #FFFCF0;
+            --text-color: #100F0F;
+            font-family: "Inter", sans-serif;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #100F0F;
+                --text-color: #CECDC3;
+            }
+        }
+        body {
+            margin: 0;
+            padding: 2rem;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+        }
+        main {
+            width: 100%;
+            max-width: var(--content-width);
+        }
+        .placeholder {
+            margin-top: 10vh;
+            border-left: 2px solid var(--muted-color);
+            padding-left: 1rem;
+        }
+        .placeholder h1 {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .placeholder p {
+            color: var(--muted-color);
+            line-height: 1.5;
+        }
+        a {
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="placeholder">
+            <h1>Zeroth Layer</h1>
+            <p>Phase 2 scaffolding complete.</p>
+            <p>Waiting for core philosophy copy and design instructions.</p>
+            <br>
+            <p><a href="/blog">Go to /blog</a></p>
+        </div>
+    </main>
+</body>
+</html>
