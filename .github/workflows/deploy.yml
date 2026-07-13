@@ -33,6 +33,7 @@ jobs:
           mkdir -p deploy/blog
           mv public/* deploy/blog/
           cp index.html deploy/
+          echo "zerothlayer.com" > deploy/CNAME
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
