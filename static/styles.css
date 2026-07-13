@@ -164,6 +164,12 @@ a.plain:hover {
   text-decoration: none;
 }
 
+/* Featured post: h2 inside a hovered .plain link turns cyan */
+a.plain:hover h2 {
+  color: var(--color-accent);
+  transition: color 0.1s ease;
+}
+
 
 /* ── Code ── */
 code {
@@ -395,68 +401,26 @@ article li {
 }
 
 
-/* ── "Latest" link — underlined but inherits text color, not standard link blue ── */
-a.plain-underline {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--color-tx-faint);
-}
-
-a.plain-underline:hover {
-  color: var(--color-accent);
-  text-decoration-color: var(--color-accent);
-}
-
-
 /* ── Footer ── */
 footer {
   margin-top: 4em;
-  margin-bottom: 4em;
+  margin-bottom: 3em;
 }
 
-.footer-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Shared: used in footer and root landing page bottom links */
+.footer-links {
+  font-size: var(--font-small);
+  line-height: 2;
+  margin: 0;
 }
 
-.social-nav {
-  display: flex;
-  gap: 1.25em;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.social-nav a {
+.footer-links a {
   color: var(--color-tx-muted);
   text-decoration: none;
-  font-size: var(--font-small);
-  font-weight: 400;
 }
 
-.social-nav a:hover {
+.footer-links a:hover {
   color: var(--color-accent);
-}
-
-.footer-logo {
-  display: inline-block;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.footer-logo img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.footer-logo:hover img {
-  transform: scale(1.06);
-  opacity: 0.8;
 }
 
 

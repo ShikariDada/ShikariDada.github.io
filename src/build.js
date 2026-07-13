@@ -2,21 +2,9 @@
 /**
  * Zeroth Layer — Static Site Builder
  *
- * Reads Markdown from content/, generates HTML.
  * Blog lives at /blog/, root landing page at /.
- *
- * Output structure:
- *   public/
- *     index.html          → zerothlayer.com/   (root landing page)
- *     404.html            → redirects /blog/... to /blog/...
- *     CNAME / .nojekyll / sitemap.xml
- *     styles.css / theme.js / icon.png   ← shared, served from root
- *     blog/
- *       index.html        → zerothlayer.com/blog/
- *       feed.xml
- *       [slug]/index.html
- *       about/index.html
- *       tags/[tag]/index.html
+ * Static assets (styles.css, theme.js, icon.png) at root —
+ * referenced as /styles.css from all pages.
  */
 
 const fs = require("fs");
@@ -28,8 +16,8 @@ const { marked } = require("marked");
 // Configuration
 // ─────────────────────────────────────────────
 const CONTENT_DIR = path.join(__dirname, "..", "content");
-const OUTPUT_DIR  = path.join(__dirname, "..", "public");       // root output
-const BLOG_DIR    = path.join(OUTPUT_DIR, "blog");              // /blog/ output
+const OUTPUT_DIR  = path.join(__dirname, "..", "public");
+const BLOG_DIR    = path.join(OUTPUT_DIR, "blog");
 const STATIC_DIR  = path.join(__dirname, "..", "static");
 
 const B = "/blog"; // blog base prefix for all internal blog URLs
@@ -49,8 +37,7 @@ const SITE = {
 // ─────────────────────────────────────────────
 function readingTime(text) {
   const words = text.trim().split(/\s+/).length;
-  const mins  = Math.ceil(words / 200);
-  return `${mins} minute read`;
+  return `${Math.ceil(words / 200)} minute read`;
 }
 
 function formatDateLong(dateStr) {
@@ -68,9 +55,7 @@ function slugify(str) {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-function ensureDir(dir) {
-  fs.mkdirSync(dir, { recursive: true });
-}
+function ensureDir(dir) { fs.mkdirSync(dir, { recursive: true }); }
 
 function excerpt(text, maxLen = 160) {
   const plain = text
@@ -87,10 +72,9 @@ function excerpt(text, maxLen = 160) {
 }
 
 // ─────────────────────────────────────────────
-// Shared HTML Fragments
+// Shared HTML fragments
 // ─────────────────────────────────────────────
 const THEME_SCRIPT = `<script>
-      // In <head> first — prevents ANY flash of wrong theme
       (function(){
         try {
           if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -106,43 +90,15 @@ const THEME_TOGGLE = `<span id="theme-toggle" title="Toggle dark mode" aria-labe
       </span>`;
 
 // ─────────────────────────────────────────────
-// Templates
+// Nav builders
 // ─────────────────────────────────────────────
 
 /**
- * Blog page base template.
- * "Zeroth Layer" in nav links back to the ROOT landing page (/).
+ * Blog homepage nav: "Zeroth Layer" (left) + "About" (right)
+ * Matches stephango's homepage nav exactly.
  */
-function blogPageTemplate({ title, description, content, slug = "" }) {
-  const pageTitle    = slug ? `${title} — ${SITE.title}` : SITE.title;
-  const pageDesc     = description || SITE.description;
-  const canonicalUrl = slug ? `${SITE.blogUrl}/${slug}` : `${SITE.blogUrl}/`;
-
-  return `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    ${THEME_SCRIPT}
-    <meta charset="UTF-8">
-    <title>${pageTitle}</title>
-
-    <meta name="viewport"           content="width=device-width, initial-scale=1.0">
-    <meta name="description"        content="${pageDesc}">
-    <meta name="author"             content="${SITE.author}">
-
-    <link rel="canonical"           href="${canonicalUrl}">
-    <link rel="icon"                href="/icon.png" type="image/png">
-    <link rel="stylesheet"          href="/styles.css" type="text/css">
-    <link rel="alternate"           href="${B}/feed.xml" type="application/atom+xml" title="${SITE.title}">
-
-    <meta property="og:site_name"   content="${SITE.title}">
-    <meta property="og:url"         content="${canonicalUrl}">
-    <meta property="og:title"       content="${title}">
-    <meta property="og:description" content="${pageDesc}">
-    <meta property="og:type"        content="article">
-  </head>
-
-  <body>
-    <nav class="flex align-center">
+function navBlogHome() {
+  return `<nav class="flex align-center">
       <span class="flex-grow">
         <a class="plain" href="/">${SITE.title}</a>
       </span>
@@ -150,62 +106,32 @@ function blogPageTemplate({ title, description, content, slug = "" }) {
         <a href="${B}/about" class="muted plain">About</a>
       </span>
       ${THEME_TOGGLE}
-    </nav>
-
-    <main>
-      ${content}
-    </main>
-
-    <footer>
-      <div class="wrap">
-        <hr>
-        <div class="footer-bottom">
-          <nav class="social-nav">
-            <a href="${SITE.instagram}">Instagram</a>
-            <a href="${SITE.discord}">Discord</a>
-            <a href="${B}/feed.xml">RSS</a>
-          </nav>
-          <a href="${B}/about" class="footer-logo" title="About ${SITE.title}">
-            <img src="/icon.png" alt="${SITE.title}">
-          </a>
-        </div>
-      </div>
-    </footer>
-
-    <script src="/theme.js"></script>
-  </body>
-</html>`;
+    </nav>`;
 }
 
 /**
- * Root landing page template (zerothlayer.com/).
- * Nav has "Blog" + "About" links.
+ * Post / page / tag nav:
+ * Left = "Zeroth Layer / Writing" breadcrumb (exactly like stephango)
+ * Right = "About"
  */
-function rootPageTemplate() {
-  return `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    ${THEME_SCRIPT}
-    <meta charset="UTF-8">
-    <title>${SITE.title}</title>
+function navBlogPost() {
+  return `<nav class="flex align-center">
+      <span class="flex-grow">
+        <a class="plain" href="/">${SITE.title}</a>
+        <span class="faint"> /</span> <a href="${B}/" class="muted plain">Writing</a>
+      </span>
+      <span class="flex-shrink nav-links">
+        <a href="${B}/about" class="muted plain">About</a>
+      </span>
+      ${THEME_TOGGLE}
+    </nav>`;
+}
 
-    <meta name="viewport"           content="width=device-width, initial-scale=1.0">
-    <meta name="description"        content="${SITE.description}">
-    <meta name="author"             content="${SITE.author}">
-
-    <link rel="canonical"           href="${SITE.url}/">
-    <link rel="icon"                href="/icon.png" type="image/png">
-    <link rel="stylesheet"          href="/styles.css" type="text/css">
-
-    <meta property="og:site_name"   content="${SITE.title}">
-    <meta property="og:url"         content="${SITE.url}/">
-    <meta property="og:title"       content="${SITE.title}">
-    <meta property="og:description" content="${SITE.description}">
-    <meta property="og:type"        content="website">
-  </head>
-
-  <body>
-    <nav class="flex align-center">
+/**
+ * Root landing page nav: "Zeroth Layer" (left) + "Writing" + "About" (right)
+ */
+function navRoot() {
+  return `<nav class="flex align-center">
       <span class="flex-grow">
         <a class="plain" href="/">${SITE.title}</a>
       </span>
@@ -214,46 +140,79 @@ function rootPageTemplate() {
         <a href="${B}/about" class="muted plain">About</a>
       </span>
       ${THEME_TOGGLE}
-    </nav>
+    </nav>`;
+}
+
+// ─────────────────────────────────────────────
+// Shared footer (blog pages)
+// ─────────────────────────────────────────────
+function blogFooter() {
+  return `<footer>
+      <div class="wrap">
+        <hr>
+        <p class="footer-links">
+          <a href="${SITE.instagram}">Instagram</a><span class="faint"> · </span><a href="${SITE.discord}">Discord Community</a>
+        </p>
+      </div>
+    </footer>`;
+}
+
+// ─────────────────────────────────────────────
+// Page wrapper
+// ─────────────────────────────────────────────
+function wrap({ title, description, canonical, nav, content, footer = blogFooter() }) {
+  return `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    ${THEME_SCRIPT}
+    <meta charset="UTF-8">
+    <title>${title}</title>
+
+    <meta name="viewport"           content="width=device-width, initial-scale=1.0">
+    <meta name="description"        content="${description}">
+    <meta name="author"             content="${SITE.author}">
+
+    <link rel="canonical"           href="${canonical}">
+    <link rel="icon"                href="/icon.png" type="image/png">
+    <link rel="stylesheet"          href="/styles.css" type="text/css">
+    <link rel="alternate"           href="${B}/feed.xml" type="application/atom+xml" title="${SITE.title}">
+
+    <meta property="og:site_name"   content="${SITE.title}">
+    <meta property="og:url"         content="${canonical}">
+    <meta property="og:title"       content="${title}">
+    <meta property="og:description" content="${description}">
+    <meta property="og:type"        content="article">
+  </head>
+
+  <body>
+    ${nav}
 
     <main>
-      <div class="wrap root-content">
-
-        <p class="root-tagline">The layer before everything.</p>
-
-        <p>A space for exploring the patterns beneath reality — consciousness, karma, physics, and the systems shaping existence. Ideas that connect what seems unrelated, frameworks that make the invisible visible.</p>
-
-        <p>If these explorations help someone think more clearly, see differently, or find guidance along their path, then this space has served its purpose.</p>
-
-        <p><a href="${B}/">Read the writing →</a></p>
-
-        <hr>
-
-        <nav class="social-nav">
-          <a href="${SITE.instagram}">Instagram</a>
-          <a href="${SITE.discord}">Discord</a>
-          <a href="${B}/about">About</a>
-        </nav>
-
-      </div>
+      ${content}
     </main>
+
+    ${footer}
 
     <script src="/theme.js"></script>
   </body>
 </html>`;
 }
 
+// ─────────────────────────────────────────────
+// Content templates
+// ─────────────────────────────────────────────
+
 /**
- * Blog homepage — auto-generated from posts list.
- * "Latest" label is a link to the latest post (like stephango).
- * Section labels are full 1em size (NOT .small).
+ * Blog homepage content.
+ * "Latest" = link to latest post (like stephango: class="muted font-ui", no .small).
+ * "Topics" and "Writing" labels = muted span at full 1em.
  */
 function homepageContent(posts, allTags) {
   const latest = posts[0];
   if (!latest) return `<div class="wrap"><p>No posts yet.</p></div>`;
 
   const latestHtml = `
-      <p><a href="${B}/${latest.slug}" class="muted plain-underline">Latest</a></p>
+      <p><a href="${B}/${latest.slug}" class="muted plain">Latest</a></p>
 
       <div>
         <a href="${B}/${latest.slug}" class="plain">
@@ -284,7 +243,7 @@ function homepageContent(posts, allTags) {
 
         <hr>
 
-        <p><span class="muted">Topics</span></p>
+        <p><a href="${B}/tags" class="muted plain">Topics</a></p>
 
         <div class="line-height-loose">
           ${topicsHtml}
@@ -350,12 +309,39 @@ function tagContent(tag, posts) {
 }
 
 // ─────────────────────────────────────────────
-// RSS Feed
+// Root landing page
+// ─────────────────────────────────────────────
+function rootPage() {
+  return wrap({
+    title:       SITE.title,
+    description: SITE.description,
+    canonical:   `${SITE.url}/`,
+    nav:         navRoot(),
+    content: `
+      <div class="wrap root-content">
+        <p class="root-tagline">The layer before everything.</p>
+
+        <p>A space for exploring the patterns beneath reality — consciousness, karma, physics, and the systems shaping existence. Ideas that connect what seems unrelated, frameworks that make the invisible visible.</p>
+
+        <p>If these explorations help someone think more clearly, see differently, or find guidance along their path, then this space has served its purpose.</p>
+
+        <p><a href="${B}/">Read the writing →</a></p>
+
+        <hr>
+
+        <p class="footer-links">
+          <a href="${SITE.instagram}">Instagram</a><span class="faint"> · </span><a href="${SITE.discord}">Discord Community</a>
+        </p>
+      </div>`,
+    footer: "", // root page has no separate footer section
+  });
+}
+
+// ─────────────────────────────────────────────
+// RSS & Sitemap
 // ─────────────────────────────────────────────
 function generateRSS(posts) {
-  const items = posts
-    .slice(0, 20)
-    .map((p) => `
+  const items = posts.slice(0, 20).map((p) => `
     <entry>
       <title>${p.title}</title>
       <link href="${SITE.blogUrl}/${p.slug}"/>
@@ -363,8 +349,7 @@ function generateRSS(posts) {
       <updated>${new Date(p.date).toISOString()}</updated>
       <summary>${p.description || excerpt(p.rawContent)}</summary>
       <content type="html"><![CDATA[${p.html}]]></content>
-    </entry>`)
-    .join("");
+    </entry>`).join("");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -378,9 +363,6 @@ function generateRSS(posts) {
 </feed>`;
 }
 
-// ─────────────────────────────────────────────
-// Sitemap
-// ─────────────────────────────────────────────
 function generateSitemap(posts, tags) {
   const urls = [
     `<url><loc>${SITE.url}/</loc></url>`,
@@ -397,49 +379,22 @@ function generateSitemap(posts, tags) {
 }
 
 // ─────────────────────────────────────────────
-// 404 Page
+// 404 page
 // ─────────────────────────────────────────────
 function generate404() {
-  return `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script>
-      (function(){
-        try {
-          if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('theme-dark');
-          }
-          // Redirect old Quartz /blog/blog/... double-path URLs
-          var p = window.location.pathname;
-          if (p.startsWith('/blog/blog/')) {
-            window.location.replace(p.replace('/blog/blog/', '/blog/'));
-          }
-        } catch(e){}
-      })();
-    </script>
-    <meta charset="UTF-8">
-    <title>Not found — ${SITE.title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" href="/icon.png" type="image/png">
-  </head>
-  <body>
-    <nav class="flex align-center">
-      <span class="flex-grow"><a class="plain" href="/">${SITE.title}</a></span>
-      <span class="flex-shrink nav-links"><a href="${B}/about" class="muted plain">About</a></span>
-      ${THEME_TOGGLE}
-    </nav>
-    <main>
+  return wrap({
+    title:       `Not found — ${SITE.title}`,
+    description: "Page not found",
+    canonical:   `${SITE.url}/404`,
+    nav:         navBlogPost(),
+    content: `
       <div class="wrap">
         <heading><h1>404</h1></heading>
         <article>
-          <p class="muted">This page does not exist. <a href="${B}/">Go to writing →</a></p>
+          <p class="muted">This page does not exist. <a href="${B}/">Go to Writing →</a></p>
         </article>
-      </div>
-    </main>
-    <script src="/theme.js"></script>
-  </body>
-</html>`;
+      </div>`,
+  });
 }
 
 // ─────────────────────────────────────────────
@@ -449,12 +404,11 @@ function build() {
   console.log("Building Zeroth Layer...\n");
   const t0 = Date.now();
 
-  // Clean & create output dirs
   if (fs.existsSync(OUTPUT_DIR)) fs.rmSync(OUTPUT_DIR, { recursive: true });
   ensureDir(OUTPUT_DIR);
   ensureDir(BLOG_DIR);
 
-  // ── Read & parse Markdown files ──
+  // ── Read content ──
   const files = fs
     .readdirSync(CONTENT_DIR)
     .filter((f) => f.endsWith(".md") && f !== ".gitkeep" && f !== "index.md");
@@ -466,7 +420,6 @@ function build() {
     const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf-8");
     const { data: fm, content: mdContent } = matter(raw);
     const slug = path.basename(file, ".md");
-    const html = marked.parse(mdContent);
 
     const item = {
       slug,
@@ -476,26 +429,25 @@ function build() {
       description: fm.description || "",
       layout:      fm.layout || "post",
       rawContent:  mdContent,
-      html,
+      html:        marked.parse(mdContent),
     };
 
     item.layout === "page" ? pages.push(item) : posts.push(item);
   }
 
-  // Sort posts newest first
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  // Collect all unique tags
   const allTags = [...new Set(posts.flatMap((p) => p.tags))];
 
   // ── Root landing page ──
-  fs.writeFileSync(path.join(OUTPUT_DIR, "index.html"), rootPageTemplate());
-  console.log("  ✓ index.html  (root landing page)");
+  fs.writeFileSync(path.join(OUTPUT_DIR, "index.html"), rootPage());
+  console.log("  ✓ index.html  (root landing)");
 
   // ── Blog homepage ──
-  const blogHome = blogPageTemplate({
+  const blogHome = wrap({
     title:       SITE.title,
     description: SITE.description,
+    canonical:   `${SITE.blogUrl}/`,
+    nav:         navBlogHome(),
     content:     homepageContent(posts, allTags),
   });
   fs.writeFileSync(path.join(BLOG_DIR, "index.html"), blogHome);
@@ -505,28 +457,30 @@ function build() {
   for (const post of posts) {
     const dir = path.join(BLOG_DIR, post.slug);
     ensureDir(dir);
-    const html = blogPageTemplate({
-      title:       post.title,
-      description: post.description,
+    const html = wrap({
+      title:       `${post.title} — ${SITE.title}`,
+      description: post.description || excerpt(post.rawContent),
+      canonical:   `${SITE.blogUrl}/${post.slug}`,
+      nav:         navBlogPost(),   // ← breadcrumb "Zeroth Layer / Writing"
       content:     postContent(post),
-      slug:        post.slug,
     });
     fs.writeFileSync(path.join(dir, "index.html"), html);
-    console.log(`  ✓ blog/${post.slug}/index.html`);
+    console.log(`  ✓ blog/${post.slug}/`);
   }
 
-  // ── Static pages (about, etc.) ──
+  // ── Static pages (about etc.) ──
   for (const page of pages) {
     const dir = path.join(BLOG_DIR, page.slug);
     ensureDir(dir);
-    const html = blogPageTemplate({
-      title:       page.title,
+    const html = wrap({
+      title:       `${page.title} — ${SITE.title}`,
       description: page.description,
+      canonical:   `${SITE.blogUrl}/${page.slug}`,
+      nav:         navBlogPost(),   // ← breadcrumb on about page too
       content:     pageContent(page),
-      slug:        page.slug,
     });
     fs.writeFileSync(path.join(dir, "index.html"), html);
-    console.log(`  ✓ blog/${page.slug}/index.html`);
+    console.log(`  ✓ blog/${page.slug}/`);
   }
 
   // ── Tag pages ──
@@ -535,14 +489,15 @@ function build() {
     const dir = path.join(BLOG_DIR, "tags", tagSlug);
     ensureDir(dir);
     const tagPosts = posts.filter((p) => p.tags.map(slugify).includes(tagSlug));
-    const html = blogPageTemplate({
+    const html = wrap({
       title:       `${tag} — ${SITE.title}`,
       description: `Posts tagged "${tag}"`,
+      canonical:   `${SITE.blogUrl}/tags/${tagSlug}`,
+      nav:         navBlogPost(),   // ← breadcrumb on tag pages too
       content:     tagContent(tag, tagPosts),
-      slug:        `tags/${tagSlug}`,
     });
     fs.writeFileSync(path.join(dir, "index.html"), html);
-    console.log(`  ✓ blog/tags/${tagSlug}/index.html`);
+    console.log(`  ✓ blog/tags/${tagSlug}/`);
   }
 
   // ── RSS feed ──
@@ -553,7 +508,7 @@ function build() {
   fs.writeFileSync(path.join(OUTPUT_DIR, "sitemap.xml"), generateSitemap(posts, allTags));
   console.log("  ✓ sitemap.xml");
 
-  // ── CNAME & .nojekyll ──
+  // ── CNAME + .nojekyll ──
   fs.writeFileSync(path.join(OUTPUT_DIR, "CNAME"), "zerothlayer.com");
   fs.writeFileSync(path.join(OUTPUT_DIR, ".nojekyll"), "");
   console.log("  ✓ CNAME / .nojekyll");
@@ -562,20 +517,19 @@ function build() {
   fs.writeFileSync(path.join(OUTPUT_DIR, "404.html"), generate404());
   console.log("  ✓ 404.html");
 
-  // ── Static assets → root (shared by both / and /blog/) ──
-  const statics = fs.readdirSync(STATIC_DIR);
-  for (const file of statics) {
+  // ── Static assets → root ──
+  for (const file of fs.readdirSync(STATIC_DIR)) {
     const src = path.join(STATIC_DIR, file);
     if (fs.statSync(src).isFile()) {
       fs.copyFileSync(src, path.join(OUTPUT_DIR, file));
-      console.log(`  ✓ ${file}  (static → root)`);
+      console.log(`  ✓ ${file}`);
     }
   }
 
   const elapsed = Date.now() - t0;
   console.log(`\nDone in ${elapsed}ms — ${posts.length} posts, ${pages.length} pages, ${allTags.length} tags`);
-  console.log(`  zerothlayer.com/       → root landing page`);
-  console.log(`  zerothlayer.com/blog/  → blog`);
+  console.log(`  zerothlayer.com/       → root landing`);
+  console.log(`  zerothlayer.com/blog/  → writing`);
 }
 
 build();
