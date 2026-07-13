@@ -4,8 +4,9 @@
    MASTER CONTROL PANEL (VARIABLES)
    ========================================== */
 :root {
-  /* stephango uses ~37em at 16px base = 592px content width */
-  --content-width: 592px;
+  /* stephango uses ~37em but rendered at his scale ≈ 640px of content area
+     (his 37em * 16px base + rendered browser zoom gives ~640px actual column) */
+  --content-width: 640px;
 
   /* Flexoki muted color — stephango uses #6F6E69 exactly */
   --muted-color: #6F6E69;
@@ -21,13 +22,12 @@
    ========================================== */
 body {
   font-family: var(--bodyFont) !important;
-  font-size: 1rem; /* 16px base — DO NOT override globally to 20px */
+  font-size: 16px;
   font-weight: 400 !important;
   -webkit-font-smoothing: antialiased !important;
-  color: var(--darkgray) !important;
 }
 
-/* stephango: ALL links are weight 400, not semibold */
+/* ALL links: weight 400, text-color based (not accent cyan), differentiated by underline */
 a {
   font-weight: 400 !important;
   color: var(--secondary) !important;
@@ -66,12 +66,12 @@ a:hover {
     "grid-footer" !important;
 }
 
-/* Main text box */
+/* Main text box — no extra horizontal padding; content-width IS the text width */
 .page .center {
   max-width: var(--content-width) !important;
   margin: 0 auto !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -79,17 +79,16 @@ a:hover {
 
 /* ==========================================
    HEADER / NAV
-   stephango: name left, [about] [now] [toggle] right
    ========================================== */
 .page #quartz-body .page-header {
   margin-top: 3.5rem !important;
   margin-bottom: 0 !important;
-  padding: 0 1rem !important;
+  padding: 0 24px !important;
   width: 100% !important;
-  box-sizing: border-box !important;
   max-width: var(--content-width) !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  box-sizing: border-box !important;
 }
 
 .page-header header {
@@ -113,21 +112,7 @@ h2.page-title a {
 }
 
 h2.page-title a:hover {
-  color: var(--secondary) !important;
-}
-
-/* Nav right-side items (About link, darkmode) */
-.about-link {
-  font-size: 1rem !important;
-  font-weight: 400 !important;
-  color: var(--muted-color) !important;
-  text-decoration: none !important;
-  margin-right: 1.25rem !important;
-  transition: color 0.15s ease !important;
-}
-
-.about-link:hover {
-  color: var(--secondary) !important;
+  color: var(--tertiary) !important;
 }
 
 
@@ -137,7 +122,7 @@ h2.page-title a:hover {
 footer {
   max-width: var(--content-width) !important;
   margin: 5rem auto 4rem auto !important;
-  padding: 0 1rem !important;
+  padding: 0 24px !important;
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
@@ -151,6 +136,7 @@ footer {
   line-height: 1.6 !important;
 }
 
+/* Footer links share the text color (underlined) */
 .social-text a {
   color: var(--secondary) !important;
   text-decoration: underline !important;
@@ -163,7 +149,6 @@ footer {
   color: var(--tertiary) !important;
 }
 
-/* Optical alignment for circular logo */
 .footer-logo {
   margin-left: -3px !important;
 }
@@ -183,14 +168,12 @@ footer {
 
 /* ==========================================
    ARTICLE / READING PAGE TYPOGRAPHY
-   stephango body text: 1.0625rem (~17px), line-height 1.5
    ========================================== */
 article.popover-hint {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-/* Article title (h1) on post pages */
 h1.article-title {
   font-size: 1.75rem !important;
   font-weight: 500 !important;
@@ -201,7 +184,6 @@ h1.article-title {
   color: var(--dark) !important;
 }
 
-/* Date/read time under article titles */
 p.content-meta {
   margin-top: 0 !important;
   margin-bottom: 1.75rem !important;
@@ -209,26 +191,24 @@ p.content-meta {
   color: var(--muted-color) !important;
 }
 
-/* Body text in articles — stephango uses ~1.0625rem */
+/* Body text — stephango uses 17px (~1.0625rem) */
 article p,
 article ul,
 article ol,
 article li {
   margin-top: 0 !important;
-  font-size: 1.0625rem !important;   /* ~17px — stephango's exact body size */
+  font-size: 1.0625rem !important;
   line-height: 1.6 !important;
   margin-bottom: 1.5em !important;
-  color: var(--darkgray) !important;
 }
 
-/* Headings inside articles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--headerFont) !important;
   color: var(--dark) !important;
   line-height: 1.3 !important;
 }
 
-/* Internal links — no highlight box, just clean underline */
+/* Internal links inside article body — underlined, no highlight box */
 a.internal {
   background-color: transparent !important;
   padding: 0 !important;
@@ -237,12 +217,7 @@ a.internal {
   text-decoration-thickness: 1px !important;
   text-underline-offset: 3px !important;
   font-weight: 400 !important;
-  color: var(--secondary) !important;
   line-height: inherit !important;
-}
-
-a.internal:hover {
-  color: var(--tertiary) !important;
 }
 
 a.internal.tag-link::before {
@@ -251,13 +226,13 @@ a.internal.tag-link::before {
 
 
 /* ==========================================
-   HOMEPAGE SPECIFIC STYLES (STEPHANGO CLONE)
+   HOMEPAGE SPECIFIC STYLES
    ========================================== */
 body[data-slug="index"] article.popover-hint {
   padding-top: 2rem !important;
 }
 
-/* ---- Unified muted color group ---- */
+/* Unified muted color group */
 .muted-header,
 .latest-meta,
 .excerpt,
@@ -267,8 +242,7 @@ body[data-slug="index"] article.popover-hint {
   color: var(--muted-color) !important;
 }
 
-/* ---- Section labels: "Latest", "Topics", "Writing" ----
-   stephango: same size as body text, muted, no margin below the <p> wrapper */
+/* Section labels: "Latest", "Topics", "Writing" — body size, muted */
 .muted-header {
   font-size: 1rem !important;
   font-weight: 400 !important;
@@ -280,39 +254,41 @@ article p:has(.muted-header) {
   margin-bottom: 0.75rem !important;
 }
 
-/* ---- Latest section ----
-   stephango: featured post title is an h2, weight 500 */
-h2.latest-title,
-h2.latest-title a,
-h3,
-h3 a {
+/* ---- Featured post title (h2/h3 in index.md) ----
+   KEY: Must look like a HEADING (var(--dark)), not a link.
+   The <a> inside is hidden behind heading styling, only shows
+   underline on hover — exactly like stephango. */
+h2, h3 {
   font-size: 1.4rem !important;
   font-weight: 500 !important;
   margin-top: 0 !important;
   margin-bottom: 0.3rem !important;
   line-height: 1.3 !important;
-  -webkit-text-stroke: 0 !important; /* remove the hack */
-  color: var(--dark) !important;
 }
 
-h3 a,
-h2.latest-title a {
+/* h2/h3 links on homepage look like headings, NOT like links */
+h2 a,
+h3 a {
+  color: var(--dark) !important;
   text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+h2 a:hover,
+h3 a:hover {
   color: var(--dark) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
 }
 
-h3 a:hover,
-h2.latest-title a:hover {
-  color: var(--secondary) !important;
-}
-
-/* Date & read-time under latest post */
+/* Date under featured post */
 article p:has(.latest-meta) {
   margin-bottom: 0 !important;
 }
 
 .latest-meta {
-  font-size: 0.875rem !important;   /* ~14px — small, muted, like stephango */
+  font-size: 0.875rem !important;
   display: block !important;
   margin-bottom: 0.5rem !important;
 }
@@ -320,7 +296,7 @@ article p:has(.latest-meta) {
 /* Excerpt and keep-reading */
 .excerpt,
 .keep-reading {
-  font-size: 0.9375rem !important;  /* ~15px */
+  font-size: 0.9375rem !important;
   line-height: 1.5 !important;
 }
 
@@ -334,10 +310,10 @@ article p:has(.excerpt) {
 }
 
 .keep-reading:hover {
-  color: var(--secondary) !important;
+  color: var(--tertiary) !important;
 }
 
-/* ---- Dividers ---- */
+/* Dividers */
 hr.minimal-divider {
   border: none !important;
   border-top: 1px solid var(--lightgray) !important;
@@ -345,7 +321,7 @@ hr.minimal-divider {
   margin: 2rem 0 !important;
 }
 
-/* ---- Topics section ---- */
+/* Topics */
 .topics-list {
   font-size: 1rem !important;
   line-height: 1.7 !important;
@@ -363,7 +339,7 @@ hr.minimal-divider {
   color: var(--tertiary) !important;
 }
 
-/* ---- Writing list section ---- */
+/* Writing list */
 ul.clean-list {
   list-style: none !important;
   padding: 0 !important;
@@ -390,7 +366,7 @@ ul.clean-list li a:hover {
   color: var(--tertiary) !important;
 }
 
-/* Date column — tabular nums, monospace alignment */
+/* Date column */
 .list-date {
   font-family: var(--bodyFont) !important;
   font-variant-numeric: tabular-nums !important;
@@ -400,24 +376,25 @@ ul.clean-list li a:hover {
   margin-right: 1.25rem !important;
 }
 
-
-/* ==========================================
-   DARK MODE TOGGLE (Quartz default Darkmode component)
-   ========================================== */
-#darkmode-toggle {
-  opacity: 0.6 !important;
-  transition: opacity 0.15s ease !important;
+/* About link in nav — muted, not accent */
+.about-link {
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: var(--muted-color) !important;
+  text-decoration: none !important;
+  margin-right: 1.25rem !important;
+  transition: color 0.15s ease !important;
 }
-#darkmode-toggle:hover {
-  opacity: 1 !important;
+
+.about-link:hover {
+  color: var(--tertiary) !important;
 }
 
 
 /* ==========================================
    MOBILE RESPONSIVENESS
-   stephango: --wrap-normal becomes 88vw below 860px
    ========================================== */
-@media all and (max-width: 860px) {
+@media all and (max-width: 700px) {
   :root {
     --content-width: 100%;
   }
@@ -443,8 +420,8 @@ ul.clean-list li a:hover {
   }
 
   h1.article-title {
-    font-size: 1.5rem !important;
-    margin-top: 3rem !important;
+    font-size: 1.4rem !important;
+    margin-top: 2.5rem !important;
   }
 
   article p,
