@@ -389,26 +389,59 @@ article li {
 }
 
 
+/* ── "Latest" link — underlined but inherits text color, not standard link blue ── */
+a.plain-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-tx-faint);
+}
+
+a.plain-underline:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+
 /* ── Footer ── */
 footer {
-  margin-top: 5em;
+  margin-top: 4em;
   margin-bottom: 4em;
 }
 
-footer p {
-  font-size: 1em;
-  line-height: 1.6;
-  margin-bottom: 0.75em;
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-nav {
+  display: flex;
+  gap: 1.25em;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.social-nav a {
+  color: var(--color-tx-muted);
+  text-decoration: none;
+  font-size: var(--font-small);
+  font-weight: 400;
+}
+
+.social-nav a:hover {
+  color: var(--color-accent);
 }
 
 .footer-logo {
   display: inline-block;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .footer-logo img {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
@@ -417,7 +450,21 @@ footer p {
 
 .footer-logo:hover img {
   transform: scale(1.06);
-  opacity: 0.85;
+  opacity: 0.8;
+}
+
+
+/* ── Root Landing Page (zerothlayer.com/) ── */
+.root-content {
+  margin-top: 3rem;
+}
+
+.root-tagline {
+  font-size: 1.5em;
+  font-weight: var(--heading-weight);
+  line-height: 1.25;
+  margin-bottom: 1.5em;
+  color: var(--color-tx-normal);
 }
 
 
