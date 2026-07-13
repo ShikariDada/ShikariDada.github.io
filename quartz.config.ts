@@ -30,26 +30,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#FFFCF0",       // Flexoki paper — warm cream background
-          lightgray: "#E6E4D9",   // Flexoki 100 — borders, dividers
-          gray: "#B7B5AC",        // Flexoki 300 — faint muted
-          darkgray: "#282726",    // Flexoki 900 — body text
-          dark: "#100F0F",        // Flexoki black — headings
-          secondary: "#282726",   // link color = near-black (stephango: links blend with text)
-          tertiary: "#3AA99F",    // hover = Flexoki cyan (accent only on hover)
-          highlight: "rgba(0, 0, 0, 0.04)",
-          textHighlight: "#fff23688",
+          light: "#FFFCF0",       
+          lightgray: "#E6E4D9",   
+          gray: "#B7B5AC",        
+          darkgray: "#100F0F",    
+          dark: "#100F0F",        
+          secondary: "#100F0F",   
+          tertiary: "#CECDC3",    
+          highlight: "rgba(0, 0, 0, 0.05)", 
+          textHighlight: "#fff23688", 
         },
         darkMode: {
-          light: "#100F0F",       // Flexoki black — dark bg
-          lightgray: "#1C1B1A",   // Flexoki 950 — dark borders
-          gray: "#575653",        // Flexoki 700 — dark muted
-          darkgray: "#CECDC3",    // Flexoki 200 — dark body text
-          dark: "#E6E4D9",        // Flexoki 100 — dark headings
-          secondary: "#CECDC3",   // link color = warm cream (stephango: links same tone as text)
-          tertiary: "#3AA99F",    // hover = cyan accent
-          highlight: "rgba(255, 255, 255, 0.07)",
-          textHighlight: "#b3aa0288",
+          light: "#100F0F",       
+          lightgray: "#282726",   
+          gray: "#575653",        
+          darkgray: "#CECDC3",    
+          dark: "#CECDC3",        
+          secondary: "#CECDC3",   
+          tertiary: "#403E3C",    
+          highlight: "rgba(255, 255, 255, 0.1)", 
+          textHighlight: "#b3aa0288", 
         },
       },
     },
