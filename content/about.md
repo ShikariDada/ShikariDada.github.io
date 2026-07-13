@@ -1,7 +1,9 @@
 ---
 title: Why this Exists
+date: 2026-01-01
+layout: page
+description: "About Zeroth Layer — exploring ideas, patterns, and insights about life and the systems that shape it."
 ---
-
 
 Trying to speak the unspeakable and give form to the formless.
 
