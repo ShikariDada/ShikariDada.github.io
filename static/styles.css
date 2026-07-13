@@ -17,6 +17,10 @@ sub, sup { font-size: 85%; line-height: 0; position: relative; vertical-align: b
 sub { bottom: -0.25em; }
 sup { top: -0.35em; }
 
+/* Text selection — exact stephango.com values (Flexoki cyan tint) */
+::selection       { background: var(--color-selection); }
+::-moz-selection  { background: var(--color-selection); }
+
 
 /* ── Design Tokens ── */
 :root {
@@ -74,6 +78,7 @@ sup { top: -0.35em; }
   --color-ui-hover:     var(--flexoki-150);
   --color-accent:       var(--flexoki-cyan);
   --color-action:       var(--flexoki-action);
+  --color-selection:    rgba(187, 220, 206, 0.3);  /* stephango exact: soft cyan-green */
 }
 
 /* ── Dark Theme ── */
@@ -87,6 +92,7 @@ html.theme-dark {
   --color-ui-hover:     var(--flexoki-850);
   --color-accent:       var(--flexoki-cyan);
   --color-action:       var(--flexoki-cyan);
+  --color-selection:    rgba(30, 95, 91, 0.3);     /* stephango exact: deep cyan-green */
 }
 
 
