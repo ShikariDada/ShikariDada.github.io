@@ -13,9 +13,8 @@ export default ((opts?: Options) => {
     const links = opts?.links ?? []
     return (
       <footer class={`${displayClass ?? ""}`}>
-        {/* Steph Ango conversational text style */}
         <div class="social-text">
-          Follow me on <a href="https://www.instagram.com/zerothlayer?igsh=OGF2ZnowdG1hbWhq">Instagram</a>, and join the <a href="https://discord.gg/Uzs63XGuS">Discord Community</a>.
+          Follow me on <a href="https://www.instagram.com/zerothlayer?igsh=OGF2ZnowdG1hbWhq">Instagram</a>, and join the <a href="https://discord.gg/kqW9Ea5pMP">Discord Community</a>.
         </div>
 
         {/* The optical alignment target */}
