@@ -2,13 +2,11 @@
    Zeroth Layer — Styles
    
    Flexoki color palette (MIT License, kepano/flexoki)
-   Layout cloned from stephango.com
-   Toggle: exact CSS + SVG mask approach from stephango
+   Layout + sizing cloned from stephango.com
    ============================================================ */
 
-/* ── Reset / Normalize (minimal) ── */
+/* ── Reset / Normalize (minimal, from stephango) ── */
 *, *::before, *::after { box-sizing: border-box; }
-html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
 body { margin: 0; }
 hr { box-sizing: content-box; height: 0; overflow: visible; }
 img { border-style: none; max-width: 100%; }
@@ -17,7 +15,7 @@ sub, sup { font-size: 85%; line-height: 0; position: relative; vertical-align: b
 sub { bottom: -0.25em; }
 sup { top: -0.35em; }
 
-/* Text selection — exact stephango.com values (Flexoki cyan tint) */
+/* Text selection — exact stephango values */
 ::selection       { background: var(--color-selection); }
 ::-moz-selection  { background: var(--color-selection); }
 
@@ -33,6 +31,7 @@ sup { top: -0.35em; }
   --line-height:   1.5;
   --heading-weight: 500;
   --font-small:    0.875em;
+  --font-smaller:  0.8em;
   --image-radius:  6px;
 }
 
@@ -63,11 +62,11 @@ sup { top: -0.35em; }
   --flexoki-900:    #282726;
   --flexoki-950:    #1C1B1A;
   --flexoki-cyan:   #3AA99F;
-  --flexoki-action: #205EA6;  /* blue-600 */
+  --flexoki-action: #205EA6;
 }
 
 
-/* ── Light Theme (default on :root) ── */
+/* ── Light Theme ── */
 :root {
   --color-bg-primary:   var(--flexoki-paper);
   --color-bg-secondary: var(--flexoki-50);
@@ -78,7 +77,7 @@ sup { top: -0.35em; }
   --color-ui-hover:     var(--flexoki-150);
   --color-accent:       var(--flexoki-cyan);
   --color-action:       var(--flexoki-action);
-  --color-selection:    rgba(187, 220, 206, 0.3);  /* stephango exact: soft cyan-green */
+  --color-selection:    rgba(187, 220, 206, 0.3);
 }
 
 /* ── Dark Theme ── */
@@ -92,38 +91,72 @@ html.theme-dark {
   --color-ui-hover:     var(--flexoki-850);
   --color-accent:       var(--flexoki-cyan);
   --color-action:       var(--flexoki-cyan);
-  --color-selection:    rgba(30, 95, 91, 0.3);     /* stephango exact: deep cyan-green */
+  --color-selection:    rgba(30, 95, 91, 0.3);
 }
 
 
-/* ── Base Typography ── */
+/* ============================================================
+   BASE TYPOGRAPHY — exact stephango sizing system
+
+   He uses:
+     html { font-size: 62.5% }        → 1rem = 10px
+     body { font-size: 1.8rem }        → 18px body text
+     body { font-size: calc(1.5rem + 0.25vw) }  → responsive
+
+   We replicate the same computed sizes WITHOUT 62.5% hack,
+   because our rem values elsewhere (nav padding etc.) would
+   break. Instead we set body to 18px directly.
+   ============================================================ */
 html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   font-family: var(--font-content);
-  font-size: 1em;                       /* 16px — browser default */
-  line-height: var(--line-height);
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
   color: var(--color-tx-normal);
   background-color: var(--color-bg-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  margin: 0;
-  /* background inherits from html — prevents flash */
-  color: inherit;
-  background-color: inherit;
+  color-scheme: light dark;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-color: var(--color-bg-primary);
+  font-family: var(--font-content);
+  color: var(--color-tx-normal);
+
+  /* CRITICAL: stephango uses 18px body text, not 16px.
+     His formula: calc(1.5rem + 0.25vw) with 62.5% html.
+     That evaluates to: calc(15px + 0.25vw) ≈ 18px at 1200px.
+     We replicate the same responsive scaling: */
+  font-size: 18px;
+  font-size: calc(15px + 0.25vw);
+
+  line-height: var(--line-height);
+  margin: 2vw auto 0 auto;         /* stephango: 2vw auto 0 auto */
+  padding: 0 0 12rem;              /* big bottom padding for scroll */
+  overflow-x: hidden;
 }
 
+
+/* ── Headings ──
+   stephango h1 = 1.25em (NOT 2em — his is MUCH smaller than default)
+   stephango h2 = default (no explicit size, inherits browser ~1.5em)
+   stephango h2 margin-top = 2em
+   ── */
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--heading-weight);
   line-height: 1.25;
   color: var(--color-tx-normal);
 }
 
-h1 { font-size: 2em;    margin: 0.67em 0; }
-h2 { font-size: 1.5em;  margin-top: 1.5em; margin-bottom: 0.5em; }
-h3 { font-size: 1.25em; margin-top: 1.5em; margin-bottom: 0.5em; }
-h4 { font-size: 1em;    margin-top: 1.5em; margin-bottom: 0.5em; }
+h1 { font-size: 1.25em; margin-top: 0; }
+h2 { margin-top: 2em; }
+h3 { margin-top: 1.5em; }
+
+article h1 + h2,
+article h2 + h3 { margin-top: 1em; }
 
 p { margin-top: 0; margin-bottom: 1em; }
 
@@ -161,10 +194,9 @@ a.plain {
 
 a.plain:hover {
   color: var(--color-accent);
-  text-decoration: none;
 }
 
-/* Featured post: h2 inside a hovered .plain link turns cyan */
+/* Featured post: hover turns entire card cyan */
 a.plain:hover h2 {
   color: var(--color-accent);
   transition: color 0.1s ease;
@@ -195,22 +227,22 @@ pre code {
 }
 
 
-/* ── Layout ── */
+/* ── Layout ──
+   stephango: nav { margin: 0 auto 3em; width: var(--wrap-normal) }
+   stephango: .wrap { max-width: var(--wrap-normal); margin-left: auto; margin-right: auto }
+   ── */
 nav {
-  max-width: var(--wrap-normal);
-  margin: 0 auto;
-  padding: 2rem 1rem 0 1rem;
-  gap: 0;
-}
-
-main {
-  /* padding handled by .wrap inside */
+  margin: 0 auto 3em;         /* 3em gap below nav — same as stephango */
+  width: var(--wrap-normal);
+  max-width: var(--wrap-wide);
+  display: flex;
+  align-items: center;
 }
 
 .wrap {
   max-width: var(--wrap-normal);
-  margin: 0 auto;
-  padding: 0 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -222,11 +254,6 @@ main {
 
 
 /* ── Navigation ── */
-nav {
-  display: flex;
-  align-items: center;
-}
-
 nav a {
   font-weight: 400;
   font-size: 1em;
@@ -252,11 +279,7 @@ nav .nav-links a:hover {
 }
 
 
-/* ── Theme Toggle (exact stephango.com implementation) ──
-   A 36×20px pill. The .theme-toggle-switch slides from
-   left (light mode = sun SVG) to right (dark mode = moon SVG).
-   Uses -webkit-mask to render an SVG icon out of a flat div.
-── */
+/* ── Theme Toggle (exact stephango implementation) ── */
 #theme-toggle {
   height: 20px;
   width: 36px;
@@ -282,7 +305,6 @@ nav .nav-links a:hover {
   transition: border-color 0.3s ease;
 }
 
-/* Sun icon (light mode — switch is on the LEFT) */
 .theme-toggle-switch {
   position: absolute;
   z-index: 9;
@@ -294,7 +316,6 @@ nav .nav-links a:hover {
   transition: left 0.1s linear, background-color 0.1s linear;
   background-color: var(--color-tx-muted);
 
-  /* Sun SVG mask */
   -webkit-mask-size: 18px;
   -webkit-mask-position: 50% 50%;
   mask-size: 18px;
@@ -303,13 +324,11 @@ nav .nav-links a:hover {
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z' clip-rule='evenodd'/%3E%3C/svg%3E");
 }
 
-/* Moon icon (dark mode — switch slides to the RIGHT) */
 html.theme-dark .theme-toggle-switch {
   left: 16px;
   background-color: var(--color-tx-normal);
   transition: left 0.1s linear, background-color 0.1s linear;
 
-  /* Moon SVG mask */
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'/%3E%3C/svg%3E");
 }
@@ -318,15 +337,12 @@ html.theme-dark .theme-toggle-switch {
 /* ── Utility Classes ── */
 .muted  { color: var(--color-tx-muted); }
 .faint  { color: var(--color-tx-faint); }
-.small  { font-size: var(--font-small); }
+.small  { font-size: var(--font-small); line-height: 1.4; }
 
 
 /* ── Homepage ── */
-main {
-  margin-top: 2rem;
-}
 
-/* The Latest section link wraps an h2 — reset h2 margin inside it */
+/* Featured post h2 inside the Latest card — smaller than full h2 */
 main > div > div > a.plain h2 {
   margin-top: 0.15em;
   margin-bottom: 0.1em;
@@ -370,10 +386,10 @@ hr {
 }
 
 
-/* ── Article / Page Pages ── */
+/* ── Article / Page ── */
 heading {
   display: block;
-  margin-top: 2rem;
+  margin-top: 0;
   margin-bottom: 2rem;
 }
 
@@ -400,6 +416,11 @@ article li {
   margin-bottom: 0.25em;
 }
 
+article hr {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
 
 /* ── Footer ── */
 footer {
@@ -407,7 +428,6 @@ footer {
   margin-bottom: 3em;
 }
 
-/* Shared: used in footer and root landing page bottom links */
 .footer-links {
   font-size: var(--font-small);
   line-height: 2;
@@ -424,9 +444,9 @@ footer {
 }
 
 
-/* ── Root Landing Page (zerothlayer.com/) ── */
+/* ── Root Landing Page ── */
 .root-content {
-  margin-top: 3rem;
+  margin-top: 0;
 }
 
 .root-tagline {
