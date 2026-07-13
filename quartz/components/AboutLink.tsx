@@ -10,19 +10,19 @@ const AboutLink: QuartzComponent = ({ displayClass }: QuartzComponentProps) => {
 
 AboutLink.css = `
 .about-link {
-  font-size: 20px;
+  font-size: 1rem;
   font-weight: 400;
-  color: var(--secondary) !important;
+  color: #6F6E69;
   text-decoration: none;
-  margin-right: 1.5rem; /* Pushes the moon a bit to the right */
-  transition: color 0.2s ease;
+  margin-right: 1.25rem;
+  transition: color 0.15s ease;
 }
 .about-link:hover {
-  color: #3AA99F !important;
+  color: var(--secondary);
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 860px) {
   .about-link {
-    font-size: 16.5px;
+    font-size: 1rem;
     margin-right: 1rem;
   }
 }
