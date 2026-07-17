@@ -264,7 +264,7 @@ function postContent(post) {
       <div class="wrap">
         <heading>
           <h1>${post.title}</h1>
-          <div class="metadata muted small">
+          <div class="metadata muted small pb">
             <time datetime="${post.date}">${formatDateLong(post.date)}</time> · <span>${readingTime(post.rawContent)}</span>
           </div>
         </heading>

@@ -375,7 +375,7 @@ main > div > div > a.plain h2 {
   line-height: 1.5;
 }
 
-.pb { padding-bottom: 0.25em; }
+.pb { padding-bottom: 1rem; }   /* stephango exact: 1rem bottom pad on metadata */
 
 hr {
   border: none;
@@ -413,12 +413,13 @@ hr {
 heading {
   display: block;
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 heading h1 {
   margin-top: 0;
-  margin-bottom: 0.2em;
+  /* margin-bottom intentionally unset — UA default (~15px) gives
+     natural breathing room between title and date/reading time */
 }
 
 heading .metadata {
