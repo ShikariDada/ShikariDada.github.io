@@ -217,7 +217,7 @@ function homepageContent(posts, allTags) {
       <div>
         <a href="${B}/${latest.slug}" class="plain">
           <h2>${latest.title}</h2>
-          <div class="metadata muted small pb">
+          <div class="metadata muted small pb font-ui">
             <time datetime="${latest.date}">${formatDateLong(latest.date)}</time> · <span>${readingTime(latest.rawContent)}</span>
           </div>
           <div class="small muted">

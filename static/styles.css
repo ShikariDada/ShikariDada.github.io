@@ -170,7 +170,9 @@ h1 {
 h2 {
   font-size: 1.4em;
   font-size: calc(1em + 0.2vw);
+  letter-spacing: -0.015em;
   margin-top: 2em;
+  margin-bottom: 0.5em;
 }
 
 h3 { margin-top: 1.5em; }
@@ -365,17 +367,11 @@ html.theme-dark .theme-toggle-switch {
 
 /* ── Homepage ── */
 
-/* Featured post h2 inside the Latest card — smaller than full h2 */
-main > div > div > a.plain h2 {
-  margin-top: 0.15em;
-  margin-bottom: 0.1em;
-}
-
 .metadata {
   line-height: 1.5;
 }
 
-.pb { padding-bottom: 1rem; }   /* stephango exact: 1rem bottom pad on metadata */
+.pb { padding-bottom: 1rem; }
 
 hr {
   border: none;
