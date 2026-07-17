@@ -135,7 +135,7 @@ body {
 
   line-height: var(--line-height);
   margin: 2vw auto 0 auto;         /* stephango: 2vw auto 0 auto */
-  padding: 0 0 12rem;              /* big bottom padding for scroll */
+  padding: 20px 0 12rem;           /* 20px top = stephango's 2rem@10px/rem */
   overflow-x: hidden;
 }
 
@@ -147,12 +147,32 @@ body {
    ── */
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--heading-weight);
-  line-height: 1.25;
   color: var(--color-tx-normal);
 }
 
-h1 { font-size: 1.25em; margin-top: 0; }
-h2 { margin-top: 2em; }
+/* stephango exact: h2-h6 use 1.3 line-height, h1 uses 1.25 */
+h2, h3, h4, h5, h6 {
+  line-height: 1.3;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+h1 {
+  font-size: 1.25em;
+  line-height: 1.25;
+  margin-top: 0;
+}
+
+/* CRITICAL: stephango h2 is NOT browser default 1.5em (27px).
+   His exact values: font-size:1.4em; font-size:calc(1em + .2vw)
+   At 18px body + 1200px viewport → calc(18px + 2.4px) ≈ 20px.
+   Previously we had UA default 27px — 30% too large. */
+h2 {
+  font-size: 1.4em;
+  font-size: calc(1em + 0.2vw);
+  margin-top: 2em;
+}
+
 h3 { margin-top: 1.5em; }
 
 article h1 + h2,
@@ -187,6 +207,11 @@ a:hover {
   color: var(--color-accent);
   text-decoration-color: var(--color-accent);
 }
+
+/* stephango exact: .muted elements make their child links muted too */
+.muted { color: var(--color-tx-muted); }
+.muted a { color: var(--color-tx-muted); }
+.faint  { color: var(--color-tx-faint); }
 
 a.plain {
   text-decoration: none;
@@ -259,9 +284,9 @@ nav a {
   font-size: 1em;
 }
 
-nav .flex-grow a {
-  color: var(--color-tx-normal);
-}
+/* No nav .flex-grow a color override — stephango has none.
+   Site name gets base a{color:tx-normal}. 
+   .muted breadcrumb link correctly shows tx-muted via .muted rule. */
 
 nav .nav-links {
   display: flex;
@@ -335,8 +360,6 @@ html.theme-dark .theme-toggle-switch {
 
 
 /* ── Utility Classes ── */
-.muted  { color: var(--color-tx-muted); }
-.faint  { color: var(--color-tx-faint); }
 .small  { font-size: var(--font-small); line-height: 1.4; }
 
 
