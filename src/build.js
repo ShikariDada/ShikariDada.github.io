@@ -212,7 +212,7 @@ function homepageContent(posts, allTags) {
   if (!latest) return `<div class="wrap"><p>No posts yet.</p></div>`;
 
   const latestHtml = `
-      <p><a href="${B}/${latest.slug}" class="muted plain">Latest</a></p>
+      <p><a href="${B}/${latest.slug}" class="muted font-ui">Latest</a></p>
 
       <div>
         <a href="${B}/${latest.slug}" class="plain">
@@ -241,7 +241,7 @@ function homepageContent(posts, allTags) {
       <div class="wrap">
         ${latestHtml}
 
-        <hr>
+        <hr class="mn2 ms2">
 
         <p><a href="${B}/tags" class="muted plain">Topics</a></p>
 
@@ -249,7 +249,7 @@ function homepageContent(posts, allTags) {
           ${topicsHtml}
         </div>
 
-        <hr>
+        <hr class="mn2 ms2">
 
         <p><span class="muted">Writing</span></p>
 

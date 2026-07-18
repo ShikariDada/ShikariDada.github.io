@@ -362,10 +362,20 @@ html.theme-dark .theme-toggle-switch {
 
 
 /* ── Utility Classes ── */
-.small  { font-size: var(--font-small); line-height: 1.4; }
+.small    { font-size: var(--font-small); line-height: 1.4; }
+.font-ui  { font-family: var(--font-ui); }
+.mn2      { margin-top: 4rem; }    /* stephango spacing utility */
+.ms2      { margin-bottom: 4rem; } /* stephango spacing utility */
 
 
 /* ── Homepage ── */
+
+/* h2 inside the Latest card: its 2em margin-top is too large here.
+   The <p>Latest</p> above already provides spacing via its margin-bottom (1em).
+   Zero out the h2 margin so title sits naturally close to the label. */
+.wrap > div > a.plain > h2 {
+  margin-top: 0;
+}
 
 .metadata {
   line-height: 1.5;
