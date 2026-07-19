@@ -371,6 +371,13 @@ html.theme-dark .theme-toggle-switch {
 
 /* ── Homepage ── */
 
+/* Latest card h2: global h2 margin-top:2em (~40px) + p margin-bottom (18px)
+   stacks to ~58px — way too much. p alone gives 18px (too little).
+   0.3em ≈ 6px extra gives ~24px total, which feels right. */
+.wrap > div > a.plain > h2 {
+  margin-top: 0.3em;
+}
+
 .metadata {
   line-height: 1.5;
 }
