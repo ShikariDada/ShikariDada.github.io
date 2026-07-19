@@ -163,9 +163,13 @@ h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.25em;
+  font-weight: 500;
+  font-size: 2em;
+  font-size: calc(1.35em + 0.55vw);
+  letter-spacing: -0.02em;
   line-height: 1.25;
-  margin-top: 0;
+  margin-top: 1.5em;
+  margin-bottom: 0.25em;
 }
 
 /* CRITICAL: stephango h2 is NOT browser default 1.5em (27px).
@@ -431,8 +435,7 @@ heading {
 
 heading h1 {
   margin-top: 0;
-  /* margin-bottom intentionally unset — UA default (~15px) gives
-     natural breathing room between title and date/reading time */
+  /* margin-bottom is inherited from the global h1 (0.25em) to match stephango exactly */
 }
 
 heading .metadata {
