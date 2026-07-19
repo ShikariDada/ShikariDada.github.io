@@ -212,7 +212,7 @@ function homepageContent(posts, allTags) {
   if (!latest) return `<div class="wrap"><p>No posts yet.</p></div>`;
 
   const latestHtml = `
-      <p><a href="${B}/${latest.slug}" class="muted font-ui">Latest</a></p>
+      <p><a href="${B}/${latest.slug}" class="muted font-ui plain">Latest</a></p>
 
       <div>
         <a href="${B}/${latest.slug}" class="plain">
