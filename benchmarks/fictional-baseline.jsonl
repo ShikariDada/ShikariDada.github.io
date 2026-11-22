@@ -1,0 +1,4 @@
+{"task_id":"fix-a","success":true,"cost_usd":0.5,"human_interventions":1}
+{"task_id":"fix-b","success":false,"cost_usd":0.7,"human_interventions":2}
+{"task_id":"fix-c","success":true,"cost_usd":0.4,"human_interventions":0}
+{"task_id":"fix-d","success":false,"cost_usd":0.6,"human_interventions":1}

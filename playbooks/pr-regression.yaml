@@ -1,0 +1,20 @@
+# Proposed DevinStack workflow; NOT a native Devin Skills/playbook document.
+# No shell command strings: check kinds are mapped to vetted argv by the runner.
+api_version: devinstack.dev/v1alpha1
+kind: RegressionWorkflow
+metadata:
+  name: pr-regression-gate
+  description: Verify an agent-authored Python change before human review
+validation:
+  fail_fast: true
+  checks:
+    - id: syntax
+      kind: syntax
+      target: .
+      required: true
+      timeout_seconds: 20
+    - id: unit-tests
+      kind: unittest
+      target: tests
+      required: true
+      timeout_seconds: 30
